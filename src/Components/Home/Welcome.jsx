@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbCube3dSphere } from "react-icons/tb";
-import { articals } from "../Utils/articals";
+import { articals } from "../../Utils/articals";
 
 const Welcome = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
