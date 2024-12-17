@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -60,14 +61,15 @@ const About = () => {
         </motion.button>
 
         {/* Register as a Company Button */}
+        <Link to={'/register'}>
         <motion.button
-          onClick={() => window.location.href = "#register"}
+          
           className="px-6 py-3 rounded-md text-lg font-semibold bg-[#1b2238] text-[#e2bf65] hover:bg-[#333c56] transition-all duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
           Register as a Company
-        </motion.button>
+        </motion.button></Link>
 
         {/* Process of Investment Button */}
         <motion.button
