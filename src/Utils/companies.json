@@ -1,5 +1,6 @@
 [
     {
+      "id":1,
       "name": "Tech Innovations Ltd",
       "image": "https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg?cs=srgb&dl=pexels-pixabay-269077.jpg&fm=jpg",
       "turnover": "10M USD",
@@ -13,6 +14,8 @@
       "extra_information": "Specializes in AI-driven products for healthcare and education."
     },
     {
+      "id":2,
+
       "name": "Green Energy Corp",
       "image": "https://img.freepik.com/premium-photo/glass-building-with-company-company-company-it_1295754-31076.jpg",
       "turnover": "25M USD",
@@ -26,6 +29,7 @@
       "extra_information": "Focused on solar and wind energy solutions with global projects."
     },
     {
+      "id":3,
       "name": "Global Foods Pvt Ltd",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZq90r-N6iTOpyqxF4D4y0EbHRSTbdLR3bLw&s",
       "turnover": "15M USD",
@@ -39,6 +43,7 @@
       "extra_information": "Leading supplier of organic food products in the Asian market."
     },
     {
+      "id":4,
       "name": "AutoTech Solutions",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDCoqKVTF_iUmibmIivrKeHCJTBnhPjG6Zw&s",
       "turnover": "8M USD",
@@ -52,6 +57,7 @@
       "extra_information": "Provides innovative software solutions for electric vehicles."
     },
     {
+      "id":5,
       "name": "NextGen Biotech",
       "image": "https://media.istockphoto.com/id/511061090/photo/business-office-building-in-london-england.jpg?s=612x612&w=0&k=20&c=nYAn4JKoCqO1hMTjZiND1PAIWoABuy1BwH1MhaEoG6w=",
       "turnover": "12M USD",
@@ -65,6 +71,7 @@
       "extra_information": "Pioneering research in personalized medicine and bioengineering."
     },
     {
+      "id":6,
       "name": "FinServe Analytics",
       "image": "https://media.istockphoto.com/id/1339912221/photo/office-building.jpg?s=612x612&w=0&k=20&c=Bya0DPAZmi6v9srmgNjdxxAhCe1S4C47Bj1k2gVOt98=",
       "turnover": "20M USD",
@@ -78,6 +85,7 @@
       "extra_information": "Develops AI-powered tools for financial analysis and trading."
     },
     {
+      "id":7,
       "name": "Urban Constructions Ltd",
       "image": "https://static01.nyt.com/images/2022/02/21/business/00tech-offices1/merlin_201807411_fcbafae1-0068-4b0e-b6e1-a0c6b6cbb798-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
       "turnover": "30M USD",
@@ -91,6 +99,7 @@
       "extra_information": "Leading construction company specializing in urban skyscrapers."
     },
     {
+      "id":8,
       "name": "EduFuture Systems",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD2uhGkveIshXZycqhXXD4-t8UdJ-zQgnDqw&s",
       "turnover": "5M USD",
@@ -104,6 +113,7 @@
       "extra_information": "Offers online learning platforms with AR and VR integration."
     },
     {
+      "id":9,
       "name": "HealthCare Plus",
       "image": "https://norr.com/wp-content/uploads/2019/11/CSC-gallery-01-1920x1080.jpg",
       "turnover": "18M USD",
@@ -117,6 +127,7 @@
       "extra_information": "Operates a chain of specialty hospitals with advanced diagnostics."
     },
     {
+      "id":10,
       "name": "LogiTech Transport",
       "image": "https://img.freepik.com/premium-photo/business-office-building-london-england-uk_117856-434.jpg?semt=ais_hybrid",
       "turnover": "22M USD",

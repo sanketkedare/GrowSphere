@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import companies from '../../Utils/companies.json'
+import { Link } from 'react-router-dom';
 
 const Partners = () => {
   return (
@@ -9,9 +10,10 @@ const Partners = () => {
         Available Companies for Investment
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {companies.map((company, index) => (
+        {companies.map((company) => (
+          <Link key={company.id} to={`/${company.id}`}>
           <motion.div
-            key={index}
+            
             className="rounded-lg shadow-lg bg-[#1b2238] overflow-hidden"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -45,7 +47,7 @@ const Partners = () => {
                 <strong>Location:</strong> {company.location}
               </p>
             </div>
-          </motion.div>
+          </motion.div></Link>
         ))}
       </div>
     </div>
