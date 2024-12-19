@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import AuthPage from "./Pages/AuthPage";
 import CompanyDetails from "./Pages/CompanyDetails";
 import RegisterCompany from "./Pages/RagisterCompany";
+import ProfilePage from "./Pages/ProfilePage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -11,7 +12,7 @@ const App = () => {
         <Route path="/auth" element= {<AuthPage/>}/>
         <Route path="/:id" element= {<CompanyDetails/>}/>
         <Route path="/register" element= {<RegisterCompany/>}/>
-
+        <Route path="/myprofile" element= {<ProfilePage/>}/>
       </Routes>
     </BrowserRouter>
   );
