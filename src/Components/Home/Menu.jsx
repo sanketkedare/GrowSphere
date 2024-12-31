@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import useAuthCheck from "../../Hooks/useAuthCheck";
 import { TbBrandLinkedinFilled } from "react-icons/tb";
 import { BsGithub } from "react-icons/bs";
 import {
@@ -16,7 +17,7 @@ import {
 } from "react-icons/fa";
 
 const Menu = () => {
-  const isAuthenticated = false;
+   const { user } = useAuthCheck();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -126,12 +127,12 @@ const Menu = () => {
                 </button>
               </Link>
               <Link
-                to={isAuthenticated ? "/myprofile" : "/auth"}
+                to={user ? "/myprofile" : "/auth"}
                 onClick={() => handleMenuItemClick()}
                 className="w-full"
               >
                 <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                  {isAuthenticated ? (
+                  {user ? (
                     <>
                       <FaUserCircle /> Profile
                     </>

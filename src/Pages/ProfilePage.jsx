@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiUser } from "react-icons/fi";
 import { FaRegChartBar, FaIndustry } from "react-icons/fa";
 import { AiOutlineLogout, AiOutlineHome } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LogOut } from "../Utils/AuthMethods";
 
 const InvestorProfile = () => {
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
+
+  const logOutHandler = async () => {
+    const response = await LogOut();
+    setMessage(response);
+  };
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        navigate("/");
+        setMessage(null);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   return (
     <div className="bg-gradient-to-b from-[#0a0f24] to-[#11162d] text-[#f5f3f0]  flex items-center justify-center py-4">
+      {message && (
+        <p className="fixed w-[500px] top-10 text-center p-4 bg-[#006633] italic text-white my-1 rounded-xl">
+          {message}
+        </p>
+      )}
       <div className="w-[90%] h-[90%] p-8 rounded-lg shadow-lg bg-[#1b2238] flex flex-col justify-between">
         {/* Profile Header */}
         <motion.div
@@ -131,6 +156,7 @@ const InvestorProfile = () => {
 
           {/* Log Out Button */}
           <motion.button
+            onClick={logOutHandler}
             className="p-3 px-6 rounded-md text-lg font-semibold flex items-center gap-2 bg-[#db4437] text-[#f5f3f0] hover:bg-[#c13529] transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
