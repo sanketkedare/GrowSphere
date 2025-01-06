@@ -6,8 +6,7 @@ import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import useAuthCheck from "../../Hooks/useAuthCheck";
 
-const AuthComponent = () => 
-{
+const AuthComponent = () => {
   const { isSignIn, error, message, setMessage } = useContext(AuthContext);
   const navigate = useNavigate();
   const { user } = useAuthCheck();

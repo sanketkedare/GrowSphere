@@ -8,19 +8,31 @@ const useAuthCheck = () => {
   useEffect(() => {
     const auth = getAuth();
 
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        // User is signed in
-        setUser(currentUser);
-      } else {
-        // User is not signed in
-        setUser(null);
-      }
-      setIsLoading(false); // Authentication state has been resolved
-    });
+    // Check for token in localStorage or sessionStorage
+    const storedToken =
+      localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
 
-    // Cleanup the listener
-    return () => unsubscribe();
+    if (storedToken) {
+      // If a token exists, simulate user persistence (you can customize this logic as needed)
+      const simulatedUser = { token: storedToken };
+      setUser(simulatedUser);
+      setIsLoading(false);
+    } else {
+      // If no token, use Firebase's onAuthStateChanged for user state monitoring
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          // User is signed in
+          setUser(currentUser);
+        } else {
+          // User is not signed in
+          setUser(null);
+        }
+        setIsLoading(false); // Authentication state has been resolved
+      });
+
+      // Cleanup the listener
+      return () => unsubscribe();
+    }
   }, []);
 
   return { user, isLoading };

@@ -1,8 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {
-  login_Email_Password,
-  signUp_Email_Password,
-} from "../../Utils/AuthMethods";
+import { login_Email_Password, signUp_Email_Password } from "../../Utils/AuthMethods";
 
 // Create AuthContext
 export const AuthContext = createContext();
@@ -18,22 +15,15 @@ const AuthContextProvider = ({ children }) => {
   const submitForm = async () => {
     try {
       if (isSignIn) {
-        await signUp_Email_Password(email, password);
-        setMessage("User Signed in Succesfully");
-      }
-      // Code for log in
-      else {
+        await signUp_Email_Password(email, password)
+        setMessage("User Signed in Successfully");
+      } else {
         await login_Email_Password(email, password);
-        setMessage("User Logged in Succesfully");
+        setMessage("User Logged in Successfully");
       }
     } catch (err) {
-      setError(
-        err.code === "auth/email-already-in-use"
-          ? "Email alredy exist, please log in"
-          : err.code === "auth/invalid-credential"
-          ? "Invalid Email or Passward"
-          : err.code
-      );
+      const errorMessage = err.response?.data?.message || "Unexpected error";
+      setError(errorMessage);
       setPassword("");
     }
   };

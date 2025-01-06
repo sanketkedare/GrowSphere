@@ -4,6 +4,7 @@ import AuthPage from "./Pages/AuthPage";
 import CompanyDetails from "./Pages/CompanyDetails";
 import RegisterCompany from "./Pages/RagisterCompany";
 import ProfilePage from "./Pages/ProfilePage";
+import ProfileEditPage from "./Pages/ProfileEditPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/:id" element= {<CompanyDetails/>}/>
         <Route path="/register" element= {<RegisterCompany/>}/>
         <Route path="/myprofile" element= {<ProfilePage/>}/>
+        <Route path="/edit-profile" element={<ProfileEditPage/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -8,7 +8,7 @@ import Partners from "../Components/Home/Partners";
 import InvestmentProcess from "../Components/Home/Process";
 import Footer from "../Components/Home/Footer";
 import useAuthCheck from "../Hooks/useAuthCheck";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { deleteUser, setUser } from "../Redux/userSlice";
 
 const Home = () => {

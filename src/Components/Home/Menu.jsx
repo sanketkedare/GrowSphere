@@ -20,6 +20,7 @@ const Menu = () => {
    const { user } = useAuthCheck();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  
 
   // Toggle menu state
   const toggleMenu = () => setMenuOpen((prev) => !prev);
