@@ -8,19 +8,26 @@ import Partners from "../Components/Home/Partners";
 import InvestmentProcess from "../Components/Home/Process";
 import Footer from "../Components/Home/Footer";
 import useAuthCheck from "../Hooks/useAuthCheck";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteUser, setUser } from "../Redux/userSlice";
+import getUserData from "../Utils/getUserData";
 
 const Home = () => {
   const { user } = useAuthCheck();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    user ? dispatch(setUser(user)) :  dispatch(deleteUser());
-  }, [user]);
+    const fetchUserData = async () => {
+      const newUser = await getUserData({ email: user?.email });
+      user && newUser
+        ? dispatch(setUser(newUser.data))
+        : dispatch(deleteUser());
+    };
+    fetchUserData();
+  }, [user, dispatch]);
 
   return (
-    <div className="bg-[#0a0f24] text-[#f5f3f0]  relative">
+    <div className="bg-[#0a0f24] text-[#f5f3f0] relative">
       <Menu />
       <Welcome />
       <Goal />

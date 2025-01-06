@@ -1,14 +1,12 @@
 import axios from "axios";
-import { signUp } from "../API/apis";
+import { register } from "../API/apis";
 
-export const useRegister = async (role, email, password, name = "User") => {
+export const useRegister = async (role, email) => {
   try {
-    const response = await axios.post(signUp, {
+    const response = await axios.post(register, {
       userType: role,
       data: {
         email: email,
-        password: password,
-        name: name,
       },
     });
     // Return the response data

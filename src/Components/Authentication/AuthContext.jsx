@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { login_Email_Password, signUp_Email_Password } from "../../Utils/AuthMethods";
+import { useRegister } from "../../Hooks/useRegister";
+import { INVESTER } from "../../Utils/constants";
 
 // Create AuthContext
 export const AuthContext = createContext();
@@ -16,6 +18,8 @@ const AuthContextProvider = ({ children }) => {
     try {
       if (isSignIn) {
         await signUp_Email_Password(email, password)
+        const newUser = await useRegister(INVESTER, email);
+        console.log("New user : ", newUser)
         setMessage("User Signed in Successfully");
       } else {
         await login_Email_Password(email, password);
