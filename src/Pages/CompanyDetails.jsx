@@ -1,7 +1,8 @@
 import React from "react";
 import Company from "../Components/Company/Company";
 
-const CompanyDetails = () => {
+const CompanyDetails = () => 
+{
   return <Company />;
 };
 

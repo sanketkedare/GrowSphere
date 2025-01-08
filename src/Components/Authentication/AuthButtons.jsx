@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { signIn_With_Google } from "../../Utils/AuthMethods";
+import { INVESTER } from "../../Utils/constants";
+import { useRegister } from "../../Hooks/useRegister";
 
 const AuthButtons = () => {
   const { isSignIn, setIsSignIn, setMessage } = useContext(AuthContext);
@@ -12,7 +14,8 @@ const AuthButtons = () => {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      await signIn_With_Google();
+      const response = await signIn_With_Google();
+      await useRegister(INVESTER, response.user.email);
       setMessage("User signed in successfully");
     } catch (error) {
       setMessage("Error signing in with Google");

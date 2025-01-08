@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import companies from "../../Utils/companies.json";
 import CompanyButtons from "./CompanyButtons";
 import { pageVariants } from "./animations";
 import NotFound from "./NotFound";
+import fetchData from "../../Utils/fetchData";
+import { company } from "../../API/apis";
 
 const Company = () => {
   const { id } = useParams();
- 
-  // Find company data by ID
-  const companyData = companies.find((item) => item.id === parseInt(id));
+  const [companyData, setCompanyData] = useState(null);
 
-  // Animation Variants
+  const getData = async () => {
+    const { data } = await fetchData(`${company}/` + id);
+    setCompanyData(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [id]);
 
   if (!companyData) {
     return <NotFound />;

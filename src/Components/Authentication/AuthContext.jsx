@@ -18,8 +18,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       if (isSignIn) {
         await signUp_Email_Password(email, password)
-        const newUser = await useRegister(INVESTER, email);
-        console.log("New user : ", newUser)
+        await useRegister(INVESTER, {email, password});
         setMessage("User Signed in Successfully");
       } else {
         await login_Email_Password(email, password);

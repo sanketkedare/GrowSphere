@@ -17,6 +17,7 @@ export const signUp_Email_Password = async (email, password) => {
       email,
       password
     );
+    console.log(response);
     return response;
   } catch (error) {
     throw error;
