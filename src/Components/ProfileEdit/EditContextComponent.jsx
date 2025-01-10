@@ -12,6 +12,7 @@ const EditContextComponent = ({ children }) => {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null)
  
+  console.log("Invester Data:", newData)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,9 +49,11 @@ const EditContextComponent = ({ children }) => {
     <EditContext.Provider
       value={{
         message,
+        userType:newData?.userType,
         success,
         userData,
         newData,
+        setNewData,
         submitHandler,
         handleChange,
         index,

@@ -8,7 +8,6 @@ const EmployeeProfile = ({ userData }) => {
     return <div>Loading...</div>;
   }
 
-
   return (
     <motion.div
       className="space-y-6 flex-1 mt-4 bg-[#1b2238] p-8 rounded-lg shadow-lg text-[#f5f3f0]"
@@ -17,25 +16,25 @@ const EmployeeProfile = ({ userData }) => {
       {/* Employee Information */}
       <div className="space-y-4">
         {/* Position */}
-        <div className="bg-[#252e48] p-4 rounded-lg flex items-center">
+        <div className="bg-[#252e48] p-4 rounded-lg flex items-center hover:bg-[#333c56] transition duration-300 ease-in-out">
           <FiBriefcase className="text-[#e2bf65] text-xl mr-4" />
           <div>
             <h2 className="text-lg font-semibold text-[#f5f3f0]">Position:</h2>
-            <p className="text-[#d1c4a9]">{userData?.position}</p>
+            <p className="text-[#d1c4a9]">{userData?.position || "NOT SET"}</p>
           </div>
         </div>
 
         {/* Email */}
-        <div className="bg-[#252e48] p-4 rounded-lg flex items-center">
+        <div className="bg-[#252e48] p-4 rounded-lg flex items-center hover:bg-[#333c56] transition duration-300 ease-in-out">
           <FiMail className="text-[#e2bf65] text-xl mr-4" />
           <div>
             <h2 className="text-lg font-semibold text-[#f5f3f0]">Email:</h2>
-            <p className="text-[#d1c4a9]">{userData?.email}</p>
+            <p className="text-[#d1c4a9]">{userData?.email || "NOT SET"}</p>
           </div>
         </div>
 
         {/* Permissions */}
-        <div className="bg-[#252e48] p-4 rounded-lg flex flex-col">
+        <div className="bg-[#252e48] p-4 rounded-lg flex flex-col hover:bg-[#333c56] transition duration-300 ease-in-out">
           <div className="flex items-center mb-2">
             <FiSettings className="text-[#e2bf65] text-xl mr-4" />
             <h2 className="text-lg font-semibold text-[#f5f3f0]">Permissions:</h2>
@@ -43,14 +42,14 @@ const EmployeeProfile = ({ userData }) => {
           <ul className="text-[#d1c4a9] list-disc ml-6">
             {Object.entries(userData?.permissions || {}).map(([key, value], index) => (
               <li key={index}>
-                {key.replace(/([A-Z])/g, " $1")}: {value ? "Granted" : "Not Granted"}
+                {key.replace(/([A-Z])/g, " $1").toLocaleUpperCase()}: {value ? "Granted" : "Not Granted"}
               </li>
             ))}
           </ul>
         </div>
 
         {/* About Employee */}
-        <div className="bg-[#252e48] p-4 rounded-lg flex items-start">
+        <div className="bg-[#252e48] p-4 rounded-lg flex items-start hover:bg-[#333c56] transition duration-300 ease-in-out">
           <FiUser className="text-[#e2bf65] text-xl mr-4 mt-1" />
           <div>
             <h2 className="text-lg font-semibold text-[#f5f3f0]">About Employee:</h2>

@@ -14,35 +14,17 @@ const EditCompany = () => {
   ];
 
   return (
-    <div>
+    <div className="p-4">
       {index === 0 ? (
         <>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={newData?.name}
-              onChange={handleChange}
-              className="w-full px-3 py-2 text-gray-900 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
-              Email (Read only)
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={newData?.email}
-              className="w-full px-3 py-2 text-gray-900 rounded"
-              readOnly
-            />
-          </div>
+          <Helper item={"name"} fun={handleChange} newData={newData} />
+          <Helper
+            item={"email"}
+            type={"email"}
+            fun={handleChange}
+            newData={newData}
+            readOnly={true}
+          />
           <EditPassWord />
         </>
       ) : (

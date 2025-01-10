@@ -26,7 +26,7 @@ const EditPassWord = () => {
     <>
       <button
         onClick={togglePasswordChange}
-        className="bg-red-200 p-2 rounded-xl text-black px-3 hover:bg-red-600 hover:text-white"
+        className="bg-red-300 text-black p-2 rounded-xl text-xs font-medium hover:bg-red-600 hover:text-white transition-all duration-300"
       >
         {show ? "Cancel Password Change" : "Want to Change Password?"}
       </button>
@@ -39,26 +39,26 @@ const EditPassWord = () => {
               value={pass}
               placeholder="Enter old password"
               onChange={(e) => setPass(e.target.value)}
-              className="w-full px-3 py-2 text-gray-900 rounded"
+              className="w-full px-3 py-1 text-white bg-gray-800 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
             />
             <button
               onClick={validatePassword}
-              className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+              className="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-blue-800 transition-all duration-300"
             >
               Validate Password
             </button>
           </div>
 
           {isValidPassword === false && (
-            <p className="text-red-500 font-bold">Wrong password!</p>
+            <p className="text-red-500 font-bold mt-1 text-xs">Wrong password!</p>
           )}
           {isValidPassword === true && (
             <>
-              <p className="text-green-500 font-bold">Password is correct!</p>
+              <p className="text-green-500 font-bold mt-1 text-xs">Password is correct!</p>
               <div className="mb-4 my-2">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-xs font-medium text-white mb-1"
                 >
                   New Password
                 </label>
@@ -68,7 +68,7 @@ const EditPassWord = () => {
                   id="password"
                   placeholder="Enter new password"
                   onChange={handleChange}
-                  className="w-full px-3 py-2 text-gray-900 rounded"
+                  className="w-full px-3 py-1 text-white bg-gray-800 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 />
               </div>
             </>
