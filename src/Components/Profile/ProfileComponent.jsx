@@ -10,8 +10,11 @@ import CompanyProfile from "../../Profiles/CompanyProfile";
 import EmployeeProfile from "../../Profiles/EmployeeProfile";
 import { motion } from "framer-motion";
 import { fadeInUp } from "./motionAnimations";
+import useUserData from "../../Hooks/useUserData";
 
-const ProfileComponent = ({ userData, profileType }) => {
+const ProfileComponent = () => 
+{
+  const userData = useUserData();
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
@@ -69,9 +72,9 @@ const ProfileComponent = ({ userData, profileType }) => {
         </motion.div>
 
         {/* Conditional Rendering of Profile Based on Profile Type */}
-        {profileType === INVESTER ? (
+        {userData.userType === INVESTER ? (
           <InvesterProfile userData={userData} />
-        ) : profileType === COMPANY ? (
+        ) : userData.userType === COMPANY ? (
           <CompanyProfile userData={userData} />
         ) : (
           <EmployeeProfile userData={userData} />

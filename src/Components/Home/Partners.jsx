@@ -17,9 +17,6 @@ const Partners = () => {
       console.error("Error fetching companies:", error);
     }
   };
-
-  console.log(companies);
-
   useEffect(() => {
     getData();
   }, []);

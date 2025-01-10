@@ -1,5 +1,5 @@
 import axios from "axios";
-import { register } from "../API/apis";
+import { profile, register } from "../API/apis";
 
 export const useRegister = async (role, obj) => {
   try {
@@ -12,6 +12,18 @@ export const useRegister = async (role, obj) => {
     if (error.response && error.response.status === 409) {
       console.log("Conflict Error:", error.response.data.message);
     }
-    return { success: false, error: error.response ? error.response.data : error.message };
+    return {
+      success: false,
+      error: error.response ? error.response.data : error.message,
+    };
+  }
+};
+
+export const useUpdate = async (id, userData ) => {
+  try {
+    const response = await axios.put(`${profile}/${id}`, userData);
+    return {success: true , response: response};
+  } catch (error) {
+    return { success: false, error: error };
   }
 };

@@ -2,8 +2,6 @@ import axios from "axios";
 import { profile } from "../API/apis";
 
 const getUserData = async ({ email }) => {
-  console.log(email)
-
   // Fetch user data from the database
   if(!email)return
   try {
@@ -13,7 +11,6 @@ const getUserData = async ({ email }) => {
       data: response.data,
     };
   } catch (error) {
-    console.error("Error fetching user data:", error);
     return {
       success: false,
       message: error.message,

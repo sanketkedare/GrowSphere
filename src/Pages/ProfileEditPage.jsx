@@ -1,11 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import EditProfile from "../Components/ProfileEdit/EditProfile";
+import EditContextComponent from "../Components/ProfileEdit/EditContextComponent.jsx";
 const ProfileEditPage = () => {
   return (
-    <div>
-      
-    </div>
+    <EditContextComponent>
+      <EditProfile />
+    </EditContextComponent>
   )
 }
 
-export default ProfileEditPage
+export default ProfileEditPage;
