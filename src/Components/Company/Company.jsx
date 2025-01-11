@@ -104,7 +104,7 @@ const Company = () => {
         </div>
 
         {/* Buttons */}
-        <CompanyButtons />
+        <CompanyButtons id={id }/>
       </div>
     </motion.div>
   );
