@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { InvestmentContext } from "./_investmentContext";
 
 const InvestmentRequest = () => {
-  const { submitInvestmentRequest } = useContext(InvestmentContext);
+  const { submitInvestmentRequest, massage } = useContext(InvestmentContext);
   const [checked, setChecked] = useState(false);
   const [message, setMassage] = useState('');
 
@@ -10,6 +10,8 @@ const InvestmentRequest = () => {
   {
     submitInvestmentRequest({message:message})
   }
+
+
 
   return (
     <div className="bg-gray-700 rounded-lg p-6">
@@ -42,7 +44,7 @@ const InvestmentRequest = () => {
       </div>
 
       {/* Submit Button */}
-      <button
+    { !massage?.success &&  <button
         className={`w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 ${
           !checked && "opacity-50 cursor-not-allowed"
         }`}
@@ -50,7 +52,7 @@ const InvestmentRequest = () => {
         disabled={!checked} // Button is disabled if the checkbox is not checked
       >
         Submit Investment Request
-      </button>
+      </button>}
     </div>
   );
 };

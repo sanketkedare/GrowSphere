@@ -6,3 +6,4 @@ export const profile = `${mainAPI}/user/profile`; // Append user ID for a specif
 
 // For GrowSphere
 export const company = `${mainAPI}/company`;
+export const investments = `${mainAPI}/investments/`

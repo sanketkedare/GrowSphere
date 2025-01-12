@@ -1,11 +1,18 @@
-import {useContext, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 
 import { generateTimeSlots } from "./InvestmentGenrateSlots";
 import { InvestmentContext } from "./_investmentContext";
 
 const InvestmentMeeting = () => {
-  const { submitMeetingRequest } = useContext(InvestmentContext);
-  const [timeSlots, setTimeSlots] = useState({}); // Initialize `timeSlots` as an object
+  const { submitMeetingRequest,massage, setMassage, timeSlots, setTimeSlots} = useContext(InvestmentContext);
+
+  useEffect(()=>{
+    if(!massage?.success)
+    {
+      setMassage(null)
+    }
+
+  },[timeSlots])
 
   const updateTimeSlots = (obj) => {
     setTimeSlots((prev) => {
@@ -28,12 +35,12 @@ const InvestmentMeeting = () => {
       </h2>
       {generateTimeSlots(updateTimeSlots, timeSlots)}
 
-      <button
+     { !massage?.success && <button
         className="mt-6 w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500"
         onClick={() => submitMeetingRequest(timeSlots)}
       >
         Finalize Meeting Request
-      </button>
+      </button>}
     </div>
   );
 };
