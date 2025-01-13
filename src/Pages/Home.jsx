@@ -8,13 +8,14 @@ import Partners from "../Components/Home/Partners";
 import InvestmentProcess from "../Components/Home/Process";
 import Footer from "../Components/Home/Footer";
 import useUserData from "../Hooks/useUserData";
+import Notifications from "../Components/Home/Notifications";
 
 const Home = () => 
 {
-  useUserData();
-  
+  const data = useUserData();  
   return (
     <div className="bg-[#0a0f24] text-[#f5f3f0] relative">
+      <Notifications id={data?._id}/>
       <Menu />
       <Welcome />
       <Goal />

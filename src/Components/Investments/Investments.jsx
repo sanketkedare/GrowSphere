@@ -11,6 +11,8 @@ const Investments = () => {
   const [show, setShow] = useState(false);
   const updateShow = (show) => setShow(show);
 
+  console.log(massage)
+
   return (
     <div className="relative bg-gray-900 text-white min-h-screen py-8">
       <div className="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">

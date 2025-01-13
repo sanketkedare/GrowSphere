@@ -28,6 +28,8 @@ const InvestmentMeeting = () => {
     });
   };
 
+
+
   return (
     <div className="bg-gray-700 rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-4 text-yellow-400">
@@ -36,7 +38,7 @@ const InvestmentMeeting = () => {
       {generateTimeSlots(updateTimeSlots, timeSlots)}
 
      { !massage?.success && <button
-        className="mt-6 w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500"
+        className={`${Object.keys(timeSlots).length === 0 && 'opacity-50 cursor-not-allowed'} mt-6 w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 `}
         onClick={() => submitMeetingRequest(timeSlots)}
       >
         Finalize Meeting Request

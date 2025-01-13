@@ -6,6 +6,7 @@ import RegisterCompany from "./Pages/RagisterCompany";
 import ProfilePage from "./Pages/ProfilePage";
 import ProfileEditPage from "./Pages/ProfileEditPage";
 import InvestmentPage from "./Pages/InvestmentPage";
+import DiscussionPage from "./Pages/DiscussionPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/register" element= {<RegisterCompany/>}/>
         <Route path="/myprofile" element= {<ProfilePage/>}/>
         <Route path="/edit-profile" element={<ProfileEditPage/>}/>
+        <Route path="/discuss" element={<DiscussionPage/>}/>
       </Routes>
     </BrowserRouter>
   );

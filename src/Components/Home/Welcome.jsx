@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TbCube3dSphere } from "react-icons/tb";
 import { articals } from "../../Utils/articals";
+import Header from "./Header";
 
 const Welcome = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,23 +21,7 @@ const Welcome = () => {
   return (
     <div className=" text-[#f5f3f0] min-h-screen">
       {/* Header Section */}
-      <div className="w-[90%] m-auto pt-10 flex gap-2 items-center">
-        <motion.div
-          className="text-[70px] shadow-md rounded-full p-1 text-[#e2bf65]"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-        >
-          <TbCube3dSphere />
-        </motion.div>
-        <div>
-          <h1 className="text-4xl font-semibold">
-            Grow<span className="text-[#e2bf65]">Sphere</span>
-          </h1>
-          <span className="italic text-[#d1c4a9]">
-            A global sphere for growth and innovation
-          </span>
-        </div>
-      </div>
+      <Header />
 
       {/* Articles Section */}
       <div className="h-[70vh] flex flex-col justify-center w-[80%] m-auto">
@@ -48,7 +32,6 @@ const Welcome = () => {
             className="text-5xl my-10 text-center m-auto font-bold text-[#e2bf65]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-           
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             {articals[currentIndex]}

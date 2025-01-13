@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import useAuthCheck from "../../Hooks/useAuthCheck";
 import { TbBrandLinkedinFilled } from "react-icons/tb";
 import { BsGithub } from "react-icons/bs";
+import { GiExplosiveMeeting } from "react-icons/gi";
 import {
   FaRocket,
   FaCog,
@@ -17,10 +18,9 @@ import {
 } from "react-icons/fa";
 
 const Menu = () => {
-   const { user } = useAuthCheck();
+  const { user } = useAuthCheck();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  
 
   // Toggle menu state
   const toggleMenu = () => setMenuOpen((prev) => !prev);
@@ -86,6 +86,11 @@ const Menu = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {/* Menu Items */}
+              <Link to={'/discuss'}>
+                <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
+                <GiExplosiveMeeting />Discussions
+                </button>
+              </Link>
               <button
                 onClick={() => handleMenuItemClick("mission")}
                 className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
@@ -119,12 +124,13 @@ const Menu = () => {
                 <FaUserPlus /> Join Us
               </button>
               <Link
-                to='/register'
+                to="/register"
                 onClick={() => handleMenuItemClick()}
                 className="w-full"
               >
                 <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                <FaPenFancy />Register Company
+                  <FaPenFancy />
+                  Register Company
                 </button>
               </Link>
               <Link

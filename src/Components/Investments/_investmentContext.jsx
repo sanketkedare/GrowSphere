@@ -27,25 +27,32 @@ const InvestmentContextComponent = ({ children }) => {
   // Submit meeting request
   const submitMeetingRequest = async (obj) => {
     const investmentObject = {
-      investerId: invester._id,
-      companyId: currentCompany._id,
+      investmentNumber: {
+        investerId: invester._id,
+        companyId: id,
+      },
       meeting: { timeSlots: obj },
     };
     const response = await createInvestment(investmentObject);
     setMassage(response);
     if (response.success) setRequestSuccess({ sent: true, type: "meeting" });
+    else setMassage({success : false, data:response.data.response.data});
+
   };
   // Submit investment request
   const submitInvestmentRequest = async (obj) => {
     const investmentObject = {
-      investerId: invester._id,
-      companyId: currentCompany._id,
+      investmentNumber: {
+        investerId: invester._id,
+        companyId: id,
+      },
       massages: [obj.message],
       progress: "In Progress",
     };
     const response = await createInvestment(investmentObject);
     setMassage(response);
     if (response.success) setRequestSuccess({ sent: true, type: "direct" });
+    else setMassage({success : false, data:response.data.response.data});
   };
 
   // Fetch data when component is mounted or when 'id' changes
@@ -58,7 +65,7 @@ const InvestmentContextComponent = ({ children }) => {
     
       timer = setTimeout(() => {
         setMassage(null);
-      }, 4000);
+      }, 9000);
 
     return () => clearTimeout(timer);
   }, [massage]);
