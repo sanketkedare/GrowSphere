@@ -42,16 +42,16 @@ const Contact = () => {
             opportunities. We're happy to connect with you and help you explore the services offered by <span className="font-bold italic">GrowSphere</span>.
           </p>
           <div className="mt-4">
-            <p className="flex items-center mb-2">
-              <span className="font-semibold text-[#e2bf65] w-24">Email:</span>
+            <p className="lg:flex items-center mb-2">
+              <h1 className="font-semibold text-[#e2bf65] w-24">Email:</h1>
               <span className="text-[#d1c4a9]">sanketkedare200@gmail.com</span>
             </p>
-            <p className="flex items-center mb-2">
-              <span className="font-semibold text-[#e2bf65] w-24">Phone:</span>
+            <p className="lg:flex items-center mb-2">
+              <h1 className="font-semibold text-[#e2bf65] w-24">Phone:</h1>
               <span className="text-[#d1c4a9]">+91 8624851910</span>
             </p>
-            <p className="flex items-center mb-2">
-              <span className="font-semibold text-[#e2bf65] w-24">Location:</span>
+            <p className="lg:flex items-center mb-2">
+              <h1 className="font-semibold text-[#e2bf65] w-24">Location:</h1>
               <span className="text-[#d1c4a9]">Pune, Maharashtra, India</span>
             </p>
           </div>

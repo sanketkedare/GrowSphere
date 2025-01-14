@@ -66,7 +66,7 @@ const Notifications = () => {
   };
 
   return (
-    <div className="fixed right-28 top-10 z-50">
+    <div className="fixed left-3 bottom-20 lg:left-auto lg:right-24 lg:top-10  flex justify-center gap-4">
       {user && (
         <div className="relative">
           <div className="relative">
@@ -103,7 +103,10 @@ const Notifications = () => {
                 {notifications.length > 0 ? (
                   <ul className="space-y-2">
                     {notifications.map((notification) => (
-                      <Link key={notification._id} to={`/discuss/${notification?._id}`}>
+                      <Link
+                        key={notification._id}
+                        to={`/discuss/${notification?._id}`}
+                      >
                         <NotificationCart notification={notification} />
                       </Link>
                     ))}

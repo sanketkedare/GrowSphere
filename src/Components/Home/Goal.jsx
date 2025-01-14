@@ -44,7 +44,7 @@ const Goal = () => {
         <>
           {/* Title Animation */}
           <motion.h1
-            className="text-5xl font-bold text-center uppercase tracking-widest text-[#e2bf65] mb-8"
+            className="lg:text-5xl text-4xl font-bold text-center uppercase tracking-widest text-[#e2bf65] mb-8"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}

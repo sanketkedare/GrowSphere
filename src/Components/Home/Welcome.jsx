@@ -24,12 +24,12 @@ const Welcome = () => {
       <Header />
 
       {/* Articles Section */}
-      <div className="h-[70vh] flex flex-col justify-center w-[80%] m-auto">
+      <div className="h-[70vh] flex flex-col lg:justify-center justify-end w-[80%] m-auto">
         {/* Animate the current article */}
         <AnimatePresence>
           <motion.p
             key={currentIndex}
-            className="text-5xl my-10 text-center m-auto font-bold text-[#e2bf65]"
+            className="lg:text-5xl text-2xl my-10 text-center m-auto font-bold text-[#e2bf65]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -40,7 +40,7 @@ const Welcome = () => {
 
         {/* Animate the next article */}
         <motion.p
-          className="italic text-xl my-5 text-center w-2/3 m-auto opacity-60 text-[#d1c4a9]"
+          className="italic lg:text-xl my-5 text-center w-2/3 m-auto opacity-60 text-[#d1c4a9]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeInOut", delay: 0 }}
@@ -56,7 +56,7 @@ const Welcome = () => {
             key={index}
             aria-label={`Go to article ${index + 1}`}
             onClick={() => setCurrentIndex(index)}
-            className={`rounded-full text-lg w-[50px] h-[50px] p-1 font-semibold transition-all duration-300 ${
+            className={`rounded-full lg:text-lg lg:w-[50px] w-[40px] lg:h-[50px] h-[40px] p-1 font-semibold transition-all duration-300 ${
               currentIndex === index
                 ? "bg-[#e2bf65] text-[#0a0f24] shadow-md scale-110"
                 : "bg-[#1b2238] text-[#d1c4a9] hover:bg-[#e2bf65] hover:text-[#0a0f24]"

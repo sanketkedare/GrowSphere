@@ -67,8 +67,8 @@ const Menu = () => {
   };
 
   return (
-    <div className="fixed right-8 top-10 z-50 flex justify-center gap-4">
-      {/* Menu Icon */}
+<div className="fixed left-3 bottom-5 lg:left-auto lg:right-8 lg:top-10 z-50 flex justify-center gap-4">
+{/* Menu Icon */}
       {!menuOpen ? (
         <IoMdMenu
           onClick={toggleMenu}

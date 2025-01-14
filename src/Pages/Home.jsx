@@ -14,13 +14,12 @@ import useNotification from "../Hooks/useNotification";
 const Home = () => {
   useUserData();
   const notification = useNotification();
-  console.log("Noti", notification)
-  
+  console.log("Noti", notification);
 
   return (
     <div className="bg-[#0a0f24] text-[#f5f3f0] relative">
-      <Notifications />
       <Menu />
+      <Notifications />
       <Welcome />
       <Goal />
       <InvestmentProcess />

@@ -38,9 +38,9 @@ const InvestmentProcess = () => {
     <div
       ref={processRef}
       id="process"
-      className="min-h-screen flex items-center justify-center "
+      className="min-h-screen flex items-center justify-center"
     >
-      <div className="w-full max-w-6xl">
+      <div className="w-full lg:max-w-6xl w-4xl">
         {/* Title */}
         <motion.h2
           className="text-4xl font-bold text-center text-[#e2bf65] mb-16"
@@ -52,27 +52,41 @@ const InvestmentProcess = () => {
         </motion.h2>
 
         {/* Steps */}
-        <div className="flex flex-row items-center justify-center space-x-8">
+        <motion.div
+          className="flex lg:flex-row flex-col gap-4 lg:items-center justify-center lg:space-x-8 px-4"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.5 },
+            },
+          }}
+        >
           {steps.map((step, index) => (
             <motion.div
               key={step.id}
-              className="flex flex-col items-center"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.5 }}
+              className="flex lg:flex-col items-center lg:justify-center gap-3 group"
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.1 }}
             >
               {/* Step Number */}
-              <div className="w-14 h-14 flex items-center justify-center bg-[#e2bf65] text-[#0a0f24] font-bold rounded-full mb-4">
+              <b className="lg:w-14 lg:h-14 w-12 h-12 sm:mt-5 flex items-center justify-center bg-[#e2bf65] text-[#0a0f24] font-bold rounded-full mb-4 group-hover:shadow-xl">
                 {step.id}
-              </div>
+              </b>
 
               {/* Step Text */}
-              <p className="text-lg text-[#f5f3f0] font-semibold text-center">
+              <p className="text-lg text-[#f5f3f0] font-semibold text-center group-hover:text-[#e2bf65]">
                 {step.text}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

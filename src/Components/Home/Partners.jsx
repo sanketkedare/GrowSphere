@@ -23,7 +23,7 @@ const Partners = () => {
 
   return (
     <div id="company" className="min-h-screen p-10">
-      <h1 className="text-4xl font-bold text-[#e2bf65] text-center my-10">
+      <h1 className="lg:text-4xl text-2xl font-bold text-[#e2bf65] text-center my-10">
         Available Companies for Investment
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
