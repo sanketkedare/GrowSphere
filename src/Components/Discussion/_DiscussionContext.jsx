@@ -1,13 +1,16 @@
 import { createContext } from "react";
 import useNotification from "../../Hooks/useNotification";
+import useUserData from "../../Hooks/useUserData";
 
 export const DiscussionContext = createContext();
 
 const DiscussionContextComponent = ({children}) =>
 {
-    const Investments = useNotification();
+    const investments = useNotification();
+    const user = useUserData();
+    
 
-    const value = {Investments}
+    const value = {investments, user}
 
     return(
         <DiscussionContext.Provider value={value}>

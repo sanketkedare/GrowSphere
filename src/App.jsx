@@ -7,6 +7,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import ProfileEditPage from "./Pages/ProfileEditPage";
 import InvestmentPage from "./Pages/InvestmentPage";
 import DiscussionPage from "./Pages/DiscussionPage";
+import DiscussionCart from "./Components/Discussion/Offers/DiscussionCart";
 const App = () => {
   return (
     <BrowserRouter>
@@ -18,7 +19,8 @@ const App = () => {
         <Route path="/register" element= {<RegisterCompany/>}/>
         <Route path="/myprofile" element= {<ProfilePage/>}/>
         <Route path="/edit-profile" element={<ProfileEditPage/>}/>
-        <Route path="/discuss" element={<DiscussionPage/>}/>
+        <Route path="/discuss/" element={<DiscussionPage/>}>
+        <Route path="/discuss/:id" element={<DiscussionCart />}/></Route>
       </Routes>
     </BrowserRouter>
   );

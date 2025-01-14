@@ -16,9 +16,11 @@ import {
   FaSignInAlt,
   FaPenFancy,
 } from "react-icons/fa";
+import useNotification from "../../Hooks/useNotification";
 
 const Menu = () => {
   const { user } = useAuthCheck();
+  const notification = useNotification();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -86,7 +88,7 @@ const Menu = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {/* Menu Items */}
-              <Link to={'/discuss'}>
+              <Link to={`/discuss/${notification[0]?._id}`}>
                 <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
                 <GiExplosiveMeeting />Discussions
                 </button>

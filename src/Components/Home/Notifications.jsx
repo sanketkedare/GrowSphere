@@ -4,6 +4,7 @@ import { FaBell } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import useNotification from "../../Hooks/useNotification";
 import NotificationCart from "../Notification/NotificationCart";
+import { Link } from "react-router-dom";
 
 const Notifications = () => {
   const notifications = useNotification() || [];
@@ -52,8 +53,16 @@ const Notifications = () => {
   };
 
   const bellVariants = {
-    hover: { scale: 1.2, rotate: 10, transition: { type: "spring", stiffness: 300 } },
-    tap: { scale: 0.9, rotate: -10, transition: { type: "spring", stiffness: 300 } },
+    hover: {
+      scale: 1.2,
+      rotate: 10,
+      transition: { type: "spring", stiffness: 300 },
+    },
+    tap: {
+      scale: 0.9,
+      rotate: -10,
+      transition: { type: "spring", stiffness: 300 },
+    },
   };
 
   return (
@@ -94,10 +103,9 @@ const Notifications = () => {
                 {notifications.length > 0 ? (
                   <ul className="space-y-2">
                     {notifications.map((notification) => (
-                      <NotificationCart
-                        key={notification._id}
-                        notification={notification}
-                      />
+                      <Link key={notification._id} to={`/discuss/${notification?._id}`}>
+                        <NotificationCart notification={notification} />
+                      </Link>
                     ))}
                   </ul>
                 ) : (

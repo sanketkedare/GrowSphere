@@ -1,19 +1,14 @@
-import React, {useContext} from "react";
-import DiscussionLogs from "./DiscussionLogs";
-import DiscussionOffers from "./DiscussionOffers";
-import {DiscussionContext} from "./_DiscussionContext";
+import React from "react";
+import User from "./Users/User";
+import { Outlet } from "react-router-dom";
 
-const Discussion = () => 
-{
-  // const {user} = useUserData();
-  const data = useContext(DiscussionContext)
-  console.log(data)
+const Discussion = () => {
   return (
-    <div className="mx-4 bg-black min-h-[80vh] rounded-xl p-4 shadow-lg bg-opacity-25">
+    <div className="mx-4 flex gap-2 bg-black h-[80vh] overflow-y-auto rounded-xl p-4 shadow-lg bg-opacity-25">
+      {/* Comapies or Investers List */}
+      <User />
       {/* Offers by newest first */}
-      <DiscussionOffers />
-      {/* Chatting Options with dynamic partner*/}
-      <DiscussionLogs />
+      <Outlet />
     </div>
   );
 };
