@@ -5,7 +5,7 @@ export const register = `${mainAPI}/user/register`;
 export const profile = `${mainAPI}/user/profile`; // Append user ID for a specific profile
 
 // For GrowSphere
-export const company = `${mainAPI}/company`;
+export const company = `${mainAPI}/company/`;
 export const invester = `${mainAPI}/invester/`;
 export const investments = `${mainAPI}/investments/`
 

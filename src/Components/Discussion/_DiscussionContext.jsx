@@ -6,10 +6,8 @@ export const DiscussionContext = createContext();
 
 const DiscussionContextComponent = ({children}) =>
 {
-    const investments = useNotification();
     const user = useUserData();
-    
-
+    const investments = useNotification(user?.userType);
     const value = {investments, user}
 
     return(

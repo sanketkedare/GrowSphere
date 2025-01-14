@@ -7,8 +7,8 @@ import NotificationCart from "../Notification/NotificationCart";
 import { Link } from "react-router-dom";
 
 const Notifications = () => {
-  const notifications = useNotification() || [];
   const { user } = useSelector((state) => state.user);
+  const notifications = useNotification(user?.userType) || [];
   const [showNotifications, setShowNotifications] = useState(false);
   const [seen, setSeen] = useState(false);
   const notificationRef = useRef(null);

@@ -20,10 +20,9 @@ import useNotification from "../../Hooks/useNotification";
 
 const Menu = () => {
   const { user } = useAuthCheck();
-  const notification = useNotification();
+  const notification = useNotification()
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
-
   // Toggle menu state
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 

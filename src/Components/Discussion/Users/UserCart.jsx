@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { COMPANY } from "../../../Utils/constants";
 import fetchData from "../../../Utils/fetchData";
-import { invester } from "../../../API/apis";
+import { company, invester } from "../../../API/apis";
 import { Link, useLocation } from "react-router-dom";
 
 const UserCart = ({ client, ntfId }) => {
   const location = useLocation();
   const id = location.pathname.split("/").pop();
-
   const [clientDetails, setClientDetails] = useState({});
   const { user } = useSelector((state) => state.user);
 
@@ -18,10 +17,10 @@ const UserCart = ({ client, ntfId }) => {
   };
 
   useEffect(() => {
-    if (user && user?.userType) {
-      user?.userType === COMPANY
-        ? getData(`${invester}${client?.investerId}`)
-        : getData(`${invester}${client?.companyId}`);
+    if (user && user?.userType) 
+    {
+      const API = user?.userType === COMPANY ? `${invester}${client?.investerId}` :`${company}${client?.companyId}`
+      getData(API)
     }
   }, [user]);
 
@@ -29,9 +28,9 @@ const UserCart = ({ client, ntfId }) => {
     <Link to={`/discuss/${ntfId}`} className={`${id === ntfId && 'bg-sky-400'}`}>
       <div className={`p-2 mb-3 min-h-[70px] flex gap-2 border rounded-xl shadow-xl ${id === ntfId ? 'bg-gray-600 ' : 'bg-gray-900'} `}>
         <img
-          src={clientDetails?.imageUrl}
+          src={clientDetails?.imageUrl || clientDetails?.image}
           alt="profile"
-          className="border border-sky-400 w-14 object-contain rounded-full"
+          className="border border-sky-400 w-14 object-contain overflow-hidden rounded-full"
         />
         <div>
           <h1 className="font-bold">{clientDetails?.name}</h1>

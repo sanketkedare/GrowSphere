@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import getUserData from "../Utils/getUserData";
 import { deleteUser, setUser } from "../Redux/userSlice";
 
-const useUserData = () => {
+const useUserData = () => 
+{
   const dispatch = useDispatch();
   const { user } = useAuthCheck(); // Get authenticated user
   const userRedux = useSelector((state) => state.user.user); // Get user data from Redux store

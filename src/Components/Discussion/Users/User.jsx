@@ -4,6 +4,7 @@ import UserCart from "./UserCart";
 
 const User = () => 
 {
+  
   const { investments } = useContext(DiscussionContext);
 
   return (

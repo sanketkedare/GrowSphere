@@ -131,7 +131,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
         <>
           {progress === progressArray[0] && (
             <>
-              {investment?.massages && (
+              {investment?.massages.length > 0 && (
                 <button
                   className="px-4 py-2 rounded-lg bg-blue-500 text-black font-semibold hover:bg-blue-600 transition"
                   onClick={handleMeeting}
@@ -139,7 +139,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
                   Request Meeting
                 </button>
               )}
-              {!investment?.massages && (
+              {investment?.meeting.timeSlots && (
                 <button
                   className="px-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:bg-green-600 transition"
                   onClick={handleMeeting}
@@ -147,6 +147,17 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
                   Accept Selected Slot
                 </button>
               )}
+              <button
+                className="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition"
+                onClick={rejectOffer}
+              >
+                Reject Offer
+              </button>
+            </>
+          )}
+
+          {progress === progressArray[1] && (
+            <>
               <button
                 className="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition"
                 onClick={rejectOffer}
