@@ -11,7 +11,7 @@ const MeetingScheduler = ({ investment, selectedSlot, handleSlotSelection }) => 
   const renderContent = () => {
     switch (PROGRESS) {
       case progressArray[0]: // "Pending"
-        return (
+        return  (
           <>
             <h1 className="text-green-500 font-bold my-2">Time Slots:</h1>
             <DiscussionTimeSlots
@@ -51,7 +51,7 @@ const MeetingScheduler = ({ investment, selectedSlot, handleSlotSelection }) => 
         return (
           <div className="text-yellow-500 font-medium">
             <p>In progress...</p>
-            <p className="text-gray-400">Please follow up on post-meeting payment processes.</p>
+            <p className="text-gray-400">Please wait for confirmation. You will be notified once the meeting is scheduled.</p>
           </div>
         );
 

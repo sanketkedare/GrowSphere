@@ -5,13 +5,13 @@ import InvestmentMeeting from "./InvestmentMeeting";
 import InvestmentRequest from "./InvestmentRequest";
 import { InvestmentContext } from "./_investmentContext";
 import InvestmentRequstSent from "./InvestmentRequstSent";
+import { Link } from "react-router-dom";
 
 const Investments = () => {
-  const { massage, requestSuccess } = useContext(InvestmentContext);
+  const { massage, requestSuccess, alreadyInvested } =
+    useContext(InvestmentContext);
   const [show, setShow] = useState(false);
   const updateShow = (show) => setShow(show);
-
-  console.log(massage)
 
   return (
     <div className="relative bg-gray-900 text-white min-h-screen py-8">
@@ -32,20 +32,35 @@ const Investments = () => {
 
         {/* Company Details Table */}
         <InvestmentTable />
-        {requestSuccess?.sent !== true ? (
+        {!alreadyInvested ? (
           <>
-            {/* Action Buttons */}
-            <InevstmentButtons updateShow={updateShow} />
+            {requestSuccess?.sent !== true ? (
+              <>
+                {/* Action Buttons */}
+                <InevstmentButtons updateShow={updateShow} />
 
-            {/* Conditional Sections */}
-            {show === "book_meeting" ? (
-              <InvestmentMeeting />
-            ) : show === "start_investing" ? (
-              <InvestmentRequest />
-            ) : null}
+                {/* Conditional Sections */}
+                {show === "book_meeting" ? (
+                  <InvestmentMeeting />
+                ) : show === "start_investing" ? (
+                  <InvestmentRequest />
+                ) : null}
+              </>
+            ) : (
+              <InvestmentRequstSent />
+            )}
           </>
         ) : (
-          <InvestmentRequstSent />
+          <div className="flex flex-col items-center justify-evenly h-[200px] text-3xl bg-black rounded-3xl shadow-sm shadow-green-500/50 border border-green-600">
+            <span className="text-green-400 font-semibold">
+              Investment is already Existed
+            </span>
+            <Link to={`/discuss/${alreadyInvested}`}>
+              <button className="bg-green-600 hover:bg-green-500 transition-colors p-3 m-1 w-[300px] text-black font-bold text-xl rounded-xl ">
+                See Investment
+              </button>
+            </Link>
+          </div>
         )}
       </div>
     </div>

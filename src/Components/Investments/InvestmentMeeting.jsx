@@ -1,10 +1,9 @@
-import {useContext, useEffect, useState } from "react";
-
+import {useContext, useEffect } from "react";
 import { generateTimeSlots } from "./InvestmentGenrateSlots";
 import { InvestmentContext } from "./_investmentContext";
 
 const InvestmentMeeting = () => {
-  const { submitMeetingRequest,massage, setMassage, timeSlots, setTimeSlots} = useContext(InvestmentContext);
+  const { submitInvestmentRequest,massage, setMassage, timeSlots, setTimeSlots} = useContext(InvestmentContext);
 
   useEffect(()=>{
     if(!massage?.success)
@@ -39,7 +38,7 @@ const InvestmentMeeting = () => {
 
      { !massage?.success && <button
         className={`${Object.keys(timeSlots).length === 0 && 'opacity-50 cursor-not-allowed'} mt-6 w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 `}
-        onClick={() => submitMeetingRequest(timeSlots)}
+        onClick={() => submitInvestmentRequest("meeting" , timeSlots)}
       >
         Finalize Meeting Request
       </button>}

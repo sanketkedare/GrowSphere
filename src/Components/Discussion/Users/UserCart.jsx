@@ -33,9 +33,9 @@ const UserCart = ({ client, ntfId }) => {
           className="border border-sky-400 w-14 object-contain overflow-hidden rounded-full"
         />
         <div>
-          <h1 className="font-bold">{clientDetails?.name}</h1>
+          <h1 className="font-bold">{clientDetails?.name }</h1>
           <h1 className="italic overflow-hidden text-sm">
-            {clientDetails?.role}
+            {clientDetails?.role || clientDetails?.location}
           </h1>
         </div>
       </div>

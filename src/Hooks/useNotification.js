@@ -3,11 +3,12 @@ import { investments } from "../API/apis";
 import useUserData from "./useUserData";
 import fetchData from "../Utils/fetchData";
 import { COMPANY, INVESTER } from "../Utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAllNotification } from "../Redux/notificationSlice";
 
 const useNotification = () => 
 {
+  const {stage} = useSelector((state)=> state)
   const data = useUserData();
   const dispatch = useDispatch();
   const [notifications, setNotifications] = useState([]);
@@ -29,6 +30,11 @@ const useNotification = () =>
       getNotifications();
     }
   }, [data]);
+
+  useEffect(()=>
+  {
+    getNotifications();
+  },[stage])
 
   return notifications;
 };

@@ -1,8 +1,10 @@
 import React from "react";
 import investmentsHandler from "../../../Utils/investmentsHandler";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setChangeStage } from "../../../Redux/stageChange";
 
 const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user);
   const type = user?.userType; // Get the user type (CMP, INV, or EMP)
   const progressArray = [
@@ -45,6 +47,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
 
     if (response.success) {
       alert(notificationMessage);
+      dispatch(setChangeStage(true));
       if (selectedSlot) setSelectedSlot(null);
     } else {
       alert("Something went wrong");
@@ -57,7 +60,6 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
       massages: [...investment.massages, "Offer Rejected"],
       progress: "Rejected",
     };
-
     const response = await investmentsHandler(investment?._id, obj);
 
     if (response.success) {
@@ -65,6 +67,8 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
     } else {
       alert("Something went wrong while rejecting the offer.");
     }
+    dispatch(setChangeStage(true));
+
   };
 
   const cancelInvestment = async () => {
@@ -81,6 +85,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
     } else {
       alert("Something went wrong while cancelling the investment.");
     }
+    dispatch(setChangeStage(true));
   };
 
   const makePayment = () => {
@@ -139,7 +144,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
                   Request Meeting
                 </button>
               )}
-              {investment?.meeting.timeSlots && (
+              {investment?.meeting?.timeSlots && (
                 <button
                   className="px-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:bg-green-600 transition"
                   onClick={handleMeeting}

@@ -5,13 +5,11 @@ import InvestmentsHeader from "./InvestmentsHeader";
 import InvestmentMassages from "./InvestmentMassages";
 import InvestmentButtons from "./InvestmentButtons";
 import MeetingScheduler from "../MeetingScheduler";
-import { useSelector } from "react-redux";
 
 const DiscussionCart = () => {
-  const userType = useSelector((state) => state.user?.user?.userType)
   const location = useLocation();
   const id = location.pathname.split("/").pop();
-  const investmentArray = useNotification(userType);
+  const investmentArray = useNotification();
   const investment = investmentArray.find((i) => id === i?._id);
 
   // State to track selected time slot
@@ -21,17 +19,23 @@ const DiscussionCart = () => {
   const handleSlotSelection = (day, slot) => {
     setSelectedSlot({ day, slot });
   };
- 
+
+  console.log(investment);
+
   return (
-    <div className="relative border w-full max-h-[500px] overflow-y-auto rounded-lg p-4 mb-4 shadow-lg bg-gray-900 text-white">
+    <div className="relative border w-full max-h-[550px] min-h-[300px] overflow-y-auto rounded-lg p-4 mb-4 shadow-lg bg-gray-900 text-white">
       {/* Investment Details */}
       <InvestmentsHeader investment={investment} />
-      <InvestmentMassages investment={investment} />
-      <MeetingScheduler
-        investment={investment}
-        selectedSlot={selectedSlot}
-        handleSlotSelection={handleSlotSelection}
-      />
+      {investment?.progress !== "Rejected" && (
+        <InvestmentMassages investment={investment} />
+      )}
+      {investment?.meeting && (
+        <MeetingScheduler
+          investment={investment}
+          selectedSlot={selectedSlot}
+          handleSlotSelection={handleSlotSelection}
+        />
+      )}
       <InvestmentButtons investment={investment} />
       <p className="text-xs text-gray-500 mt-4">
         Created At: {new Date(investment?.createdAt).toLocaleString()}

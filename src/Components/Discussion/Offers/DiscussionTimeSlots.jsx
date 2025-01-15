@@ -1,8 +1,10 @@
 import React from "react";
 
+
 const DiscussionTimeSlots = ({meeting,selectedSlot, handleSlotSelection }) => {
+  console.log("meeting?.timeSlots", meeting?.timeSlots)
   return (
-    <div className="mt-2 overflow-x-auto">
+    <div className="mt-2 overflow-x-auto overflow-y-auto max-h-[300px] overflow-scroll">
       <table className="table-auto border-collapse border border-gray-700 w-full text-sm">
         <thead>
           <tr className="bg-gray-800 text-white">
