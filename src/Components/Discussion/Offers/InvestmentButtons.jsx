@@ -19,7 +19,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
   const handleMeeting = async () => {
     let meetingTimeSlots;
     let notificationMessage;
-
+    dispatch(setChangeStage());
     if (selectedSlot) {
       // Handle slot acceptance
       meetingTimeSlots = selectedSlot;
@@ -52,6 +52,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
     } else {
       alert("Something went wrong");
     }
+  
   };
 
   const rejectOffer = async () => {
@@ -67,7 +68,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
     } else {
       alert("Something went wrong while rejecting the offer.");
     }
-    dispatch(setChangeStage(true));
+    dispatch(setChangeStage());
 
   };
 
@@ -85,7 +86,7 @@ const InvestmentButtons = ({ investment, selectedSlot, setSelectedSlot }) => {
     } else {
       alert("Something went wrong while cancelling the investment.");
     }
-    dispatch(setChangeStage(true));
+    dispatch(setChangeStage());
   };
 
   const makePayment = () => {

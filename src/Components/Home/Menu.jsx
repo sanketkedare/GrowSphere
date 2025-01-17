@@ -17,10 +17,13 @@ import {
   FaPenFancy,
 } from "react-icons/fa";
 import useNotification from "../../Hooks/useNotification";
+import { useSelector } from "react-redux";
+import { COMPANY } from "../../Utils/constants";
 
 const Menu = () => {
+  const userType = useSelector((state) => state.user.user?.userType);
   const { user } = useAuthCheck();
-  const notification = useNotification()
+  const notification = useNotification();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   // Toggle menu state
@@ -67,8 +70,8 @@ const Menu = () => {
   };
 
   return (
-<div className="fixed left-3 bottom-5 lg:left-auto lg:right-8 lg:top-10 z-50 flex justify-center gap-4">
-{/* Menu Icon */}
+    <div className="fixed left-3 bottom-5 lg:left-auto lg:right-8 lg:top-10 z-50 flex justify-center gap-4">
+      {/* Menu Icon */}
       {!menuOpen ? (
         <IoMdMenu
           onClick={toggleMenu}
@@ -87,11 +90,19 @@ const Menu = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {/* Menu Items */}
-              <Link to={`/discuss/${notification[0]?._id}`}>
+              <Link
+                to={
+                  notification[0]?._id
+                    ? `/discuss/${notification[0]._id}`
+                    : `/discuss/`
+                }
+              >
                 <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                <GiExplosiveMeeting />Discussions
+                  <GiExplosiveMeeting />
+                  Discussions
                 </button>
               </Link>
+
               <button
                 onClick={() => handleMenuItemClick("mission")}
                 className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
@@ -124,16 +135,18 @@ const Menu = () => {
               >
                 <FaUserPlus /> Join Us
               </button>
-              <Link
-                to="/register"
-                onClick={() => handleMenuItemClick()}
-                className="w-full"
-              >
-                <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                  <FaPenFancy />
-                  Register Company
-                </button>
-              </Link>
+              {userType !== COMPANY && (
+                <Link
+                  to="/register"
+                  onClick={() => handleMenuItemClick()}
+                  className="w-full"
+                >
+                  <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
+                    <FaPenFancy />
+                    Register Company
+                  </button>
+                </Link>
+              )}
               <Link
                 to={user ? "/myprofile" : "/auth"}
                 onClick={() => handleMenuItemClick()}
@@ -142,7 +155,8 @@ const Menu = () => {
                 <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
                   {user ? (
                     <>
-                      <FaUserCircle /> Profile
+                      <FaUserCircle />
+                      My Profile
                     </>
                   ) : (
                     <>

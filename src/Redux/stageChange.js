@@ -5,7 +5,7 @@ const changeInStage = createSlice({
     initialState: false,
     reducers:{
         setChangeStage: (state, action)=>{
-            state = action.payload
+            return !state
         },
 
     }

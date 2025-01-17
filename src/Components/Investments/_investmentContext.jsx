@@ -8,7 +8,8 @@ import useNotification from "../../Hooks/useNotification";
 
 export const InvestmentContext = createContext();
 
-const InvestmentContextComponent = ({ children }) => {
+const InvestmentContextComponent = ({ children }) => 
+{
   const { id } = useParams();
   const invester = useUserData();
   const [currentCompany, setCompany] = useState({});
@@ -40,7 +41,6 @@ const InvestmentContextComponent = ({ children }) => {
   };
   // Submit investment request (combined for meeting and direct investment)
   const submitInvestmentRequest = async (type, obj) => {
-
     const investmentObject = {
       investmentNumber: {
         investerId: invester._id,

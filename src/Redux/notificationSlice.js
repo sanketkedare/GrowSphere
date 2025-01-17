@@ -8,7 +8,7 @@ const notificationSlice = createSlice({
             state = action.payload;
         },
         deleteAllNotifications : (state) =>{
-            state.user = null;
+            return [];
         }
 
     }

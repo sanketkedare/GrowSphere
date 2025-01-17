@@ -10,11 +10,24 @@ import Footer from "../Components/Home/Footer";
 import Notifications from "../Components/Home/Notifications";
 import useUserData from "../Hooks/useUserData";
 import useNotification from "../Hooks/useNotification";
+import useAuthCheck from "../Hooks/useAuthCheck";
+import { useDispatch } from "react-redux";
+import { deleteAllNotifications } from "../Redux/notificationSlice";
+import { deleteUser } from "../Redux/userSlice";
 
 const Home = () => {
+  const { user } = useAuthCheck();
+  const dispatch = useDispatch();
+
   useUserData();
-  const notification = useNotification();
-  console.log("Noti", notification);
+  useNotification();
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(deleteAllNotifications());
+      dispatch(deleteUser());
+    }
+  }, [user]);
 
   return (
     <div className="bg-[#0a0f24] text-[#f5f3f0] relative">
