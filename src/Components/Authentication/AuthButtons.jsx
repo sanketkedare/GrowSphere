@@ -15,7 +15,8 @@ const AuthButtons = () => {
     setIsLoading(true);
     try {
       const response = await signIn_With_Google();
-      await useRegister(INVESTER, response.user.email);
+      const dm = await useRegister(INVESTER, {email:response.user.email , password:response.user.email});
+      console.log(dm)
       setMessage("User signed in successfully");
     } catch (error) {
       setMessage("Error signing in with Google");

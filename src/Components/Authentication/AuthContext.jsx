@@ -17,8 +17,8 @@ const AuthContextProvider = ({ children }) => {
   const submitForm = async () => {
     try {
       if (isSignIn) {
+        useRegister(INVESTER, {email, password});
         await signUp_Email_Password(email, password)
-        await useRegister(INVESTER, {email, password});
         setMessage("User Signed in Successfully");
       } else {
         await login_Email_Password(email, password);

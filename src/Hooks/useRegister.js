@@ -7,6 +7,7 @@ export const useRegister = async (role, obj) => {
       userType: role,
       data: obj,
     });
+   
     return { success: true, response: response.data };
   } catch (error) {
     if (error.response && error.response.status === 409) {
