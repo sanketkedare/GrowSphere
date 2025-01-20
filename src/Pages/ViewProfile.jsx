@@ -1,14 +1,8 @@
-import React from 'react'
+import React from "react";
+import View from "../Components/ViewProfile/View";
 
-const ViewProfile = () => 
-{
-    const id = location.pathname.split("/").pop();
+const ViewProfile = () => {
+  return <View />;
+};
 
-  return (
-    <div className='text-white'>
-      {id}
-    </div>
-  )
-}
-
-export default ViewProfile
+export default ViewProfile;

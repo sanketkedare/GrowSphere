@@ -21,7 +21,8 @@ const AuthContextProvider = ({ children }) => {
         await signUp_Email_Password(email, password)
         setMessage("User Signed in Successfully");
       } else {
-        await login_Email_Password(email, password);
+        const res = await login_Email_Password(email, password);
+        console.log(res);
         setMessage("User Logged in Successfully");
       }
     } catch (err) {

@@ -58,7 +58,7 @@ const UserCart = ({ client, ntfId }) => {
 
       {/* View Profile Button */}
       {show && (
-        <Link to={`/profile/${id}`}>
+        <Link to={`/profile/${clientDetails?.userType}${clientDetails?._id}`}>
           <button
             className={`absolute bottom-0 -right-20 p-2 h-10 rounded-r-full z-10 text-sm transition-all duration-300 border hover:bg-gray-900
                       ${
