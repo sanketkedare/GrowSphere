@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 
+const KEY =  import.meta.env.VITE_FIREBASE_KEY
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBW1iw5dV95g_88iKshNaUjbLYNfASCAjo",
+  apiKey: KEY,
   authDomain: "grow-sphere-9ca44.firebaseapp.com",
   projectId: "grow-sphere-9ca44",
   storageBucket: "grow-sphere-9ca44.firebasestorage.app",

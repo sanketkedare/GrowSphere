@@ -7,6 +7,7 @@ import Shimmer from "../Extras/Shimmer";
 
 const Partners = () => {
   const [companies, setCompanies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch Data Function
   const getData = async () => {
@@ -15,8 +16,11 @@ const Partners = () => {
       setCompanies(data);
     } catch (error) {
       console.error("Error fetching companies:", error);
+    } finally {
+      setIsLoading(false); // Stop loading after the fetch
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -26,9 +30,13 @@ const Partners = () => {
       <h1 className="lg:text-4xl text-2xl font-bold text-[#e2bf65] text-center my-10">
         Available Companies for Investment
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {companies ? (
-          companies.map((company) => (
+
+      {/* Conditional Rendering */}
+      {isLoading ? (
+        <Shimmer len={6} />
+      ) : companies.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {companies.map((company) => (
             <Link key={company._id} to={`/${company._id}`}>
               <motion.div
                 className="rounded-lg shadow-lg bg-[#1b2238] overflow-hidden"
@@ -67,11 +75,13 @@ const Partners = () => {
                 </div>
               </motion.div>
             </Link>
-          ))
-        ) : (
-          <Shimmer len={6} />
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-lg text-[#d1c4a9]">
+          No companies available for investment at the moment.
+        </p>
+      )}
     </div>
   );
 };

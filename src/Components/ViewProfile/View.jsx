@@ -5,6 +5,7 @@ import { company, invester } from "../../API/apis";
 import ViewCompany from "./ViewCompany";
 import ViewInvester from "./ViewInvester";
 import ViewEmployee from "./ViewEmployee";
+import DiscussionGoHome from "../Discussion/DiscussionGoHome";
 
 const View = () => {
   const [clientsData, setClientsData] = useState(null);
@@ -40,7 +41,7 @@ const View = () => {
   }
 
   return (
-    <div className="text-white">
+    <div className="relative text-white">
       {clientsData &&
         (type === COMPANY ? (
           <ViewCompany clientsData={clientsData} />
@@ -49,6 +50,7 @@ const View = () => {
         ) : (
           <ViewEmployee clientsData={clientsData} />
         ))}
+        <DiscussionGoHome/>
     </div>
   );
 };

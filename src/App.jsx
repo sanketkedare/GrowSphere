@@ -9,6 +9,7 @@ import InvestmentPage from "./Pages/InvestmentPage";
 import DiscussionPage from "./Pages/DiscussionPage";
 import DiscussionCart from "./Components/Discussion/Offers/DiscussionCart";
 import ViewProfile from "./Pages/ViewProfile";
+import CommutityPage from "./Pages/CommutityPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,11 +20,12 @@ const App = () => {
         <Route path="/investment/:id" element={<InvestmentPage />} />
         <Route path="/register" element={<RegisterCompany />} />
         <Route path="/myprofile" element={<ProfilePage />} />
-        <Route path="/profile/:id" element={<ViewProfile/>} />
+        <Route path="/profile/:id" element={<ViewProfile />} />
         <Route path="/edit-profile" element={<ProfileEditPage />} />
         <Route path="/discuss/" element={<DiscussionPage />}>
           <Route path="/discuss/:id" element={<DiscussionCart />} />
         </Route>
+        <Route path="/community" element={<CommutityPage/>}/>
       </Routes>
     </BrowserRouter>
   );

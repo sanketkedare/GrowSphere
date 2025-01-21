@@ -1,32 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoMdMenu } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import useAuthCheck from "../../Hooks/useAuthCheck";
-import { TbBrandLinkedinFilled } from "react-icons/tb";
-import { BsGithub } from "react-icons/bs";
-import { GiExplosiveMeeting } from "react-icons/gi";
-import {
-  FaRocket,
-  FaCog,
-  FaBuilding,
-  FaInfoCircle,
-  FaUserPlus,
-  FaUserCircle,
-  FaSignInAlt,
-  FaPenFancy,
-} from "react-icons/fa";
-import useNotification from "../../Hooks/useNotification";
-import { useSelector } from "react-redux";
-import { COMPANY } from "../../Utils/constants";
+import MenuButtons from "../Menu/MenuButtons";
 
 const Menu = () => {
-  const userType = useSelector((state) => state.user.user?.userType);
-  const { user } = useAuthCheck();
-  const notification = useNotification();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  // Toggle menu state
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   // Close menu when clicking outside or pressing Escape
@@ -62,13 +40,6 @@ const Menu = () => {
     }
   };
 
-  // Menu animation variants
-  const menuVariants = {
-    hidden: { y: -150, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-    exit: { y: 50, opacity: 0 },
-  };
-
   return (
     <div className="fixed left-3 bottom-5 lg:left-auto lg:right-8 lg:top-10 z-50 flex justify-center gap-4">
       {/* Menu Icon */}
@@ -78,116 +49,7 @@ const Menu = () => {
           className="text-5xl p-3 rounded-full bg-[#e2bf65] text-[#0a0f24] shadow-lg hover:bg-[#d1c4a9] transition-all duration-300"
         />
       ) : (
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              ref={menuRef}
-              className="relative bg-[#11162d] text-white w-[250px] rounded-xl p-4 shadow-xl backdrop-blur-sm border border-white"
-              variants={menuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              {/* Menu Items */}
-              <Link
-                to={
-                  notification[0]?._id
-                    ? `/discuss/${notification[0]._id}`
-                    : `/discuss/`
-                }
-              >
-                <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                  <GiExplosiveMeeting />
-                  Discussions
-                </button>
-              </Link>
-
-              <button
-                onClick={() => handleMenuItemClick("mission")}
-                className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
-              >
-                <FaRocket /> Our Mission
-              </button>
-              <button
-                onClick={() => handleMenuItemClick("process")}
-                className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
-              >
-                <FaCog />
-                Investment Process
-              </button>
-              <button
-                onClick={() => handleMenuItemClick("company")}
-                className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
-              >
-                <FaBuilding />
-                Listed Companies
-              </button>
-              <button
-                onClick={() => handleMenuItemClick("about")}
-                className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
-              >
-                <FaInfoCircle /> About Us
-              </button>
-              <button
-                onClick={() => handleMenuItemClick("contact")}
-                className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300"
-              >
-                <FaUserPlus /> Join Us
-              </button>
-              {userType !== COMPANY && (
-                <Link
-                  to="/register"
-                  onClick={() => handleMenuItemClick()}
-                  className="w-full"
-                >
-                  <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                    <FaPenFancy />
-                    Register Company
-                  </button>
-                </Link>
-              )}
-              <Link
-                to={user ? "/myprofile" : "/auth"}
-                onClick={() => handleMenuItemClick()}
-                className="w-full"
-              >
-                <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
-                  {user ? (
-                    <>
-                      <FaUserCircle />
-                      My Profile
-                    </>
-                  ) : (
-                    <>
-                      <FaSignInAlt /> Login / Sign Up
-                    </>
-                  )}
-                </button>
-              </Link>
-
-              {/* Social Icons */}
-              <div className="h-[100px] flex justify-center items-center gap-4 mt-4">
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full p-3 hover:bg-[#11162d] hover:text-[#e2bf65] transition-all duration-300"
-                >
-                  <TbBrandLinkedinFilled className="text-4xl" />
-                </a>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full p-3 hover:bg-[#11162d] hover:text-[#e2bf65] transition-all duration-300"
-                >
-                  <BsGithub className="text-4xl" />
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <MenuButtons handleMenuItemClick={handleMenuItemClick} menuOpen={menuOpen} menuRef={menuRef}/>
       )}
     </div>
   );

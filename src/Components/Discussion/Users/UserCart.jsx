@@ -46,6 +46,7 @@ const UserCart = ({ client, ntfId }) => {
             src={clientDetails?.imageUrl || clientDetails?.image}
             alt="profile"
             className="border border-sky-400 w-14 object-contain overflow-hidden rounded-full"
+            lazy
           />
           <div>
             <h1 className="font-bold">{clientDetails?.name}</h1>

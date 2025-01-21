@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, memo } from "react";
+import { motion } from "framer-motion";
 import { articals } from "../../Utils/articals";
 import Header from "./Header";
 
@@ -8,37 +8,36 @@ const Welcome = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      // Automatically update the current article index
       setCurrentIndex((prevIndex) => (prevIndex + 1) % articals.length);
     }, 6000);
 
-    // Clear interval on component unmount
+    // Cleanup interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
 
-  // Calculate the next article index
+  // Calculate the next article index for the "italic preview" below the main text
   const nextIndex = (currentIndex + 1) % articals.length;
 
   return (
-    <div className=" text-[#f5f3f0] min-h-screen">
+    <div className="text-[#f5f3f0] min-h-screen">
       {/* Header Section */}
       <Header />
 
       {/* Articles Section */}
       <div className="h-[70vh] flex flex-col lg:justify-center justify-end w-[80%] m-auto">
-        {/* Animate the current article */}
-        <AnimatePresence>
-          <motion.p
-            key={currentIndex}
-            className="lg:text-5xl text-2xl my-10 text-center m-auto font-bold text-[#e2bf65]"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-          >
-            {articals[currentIndex]}
-          </motion.p>
-        </AnimatePresence>
+        {/* Current Article Animation */}
+        <motion.p
+          key={currentIndex}
+          className="lg:text-5xl text-2xl my-10 text-center m-auto font-bold text-[#e2bf65]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        >
+          {articals[currentIndex]}
+        </motion.p>
 
-        {/* Animate the next article */}
+        {/* Next Article Preview */}
         <motion.p
           className="italic lg:text-xl my-5 text-center w-2/3 m-auto opacity-60 text-[#d1c4a9]"
           initial={{ opacity: 0 }}
