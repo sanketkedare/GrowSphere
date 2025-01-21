@@ -1,13 +1,12 @@
 import React from "react";
 import DiscussionHeader from "../Components/Discussion/DiscussionHeader";
 import DiscussionGoHome from "../Components/Discussion/DiscussionGoHome";
-import CoMyProfile from "../Components/Community/CoMyProfile";
 import CommunityProvider from "../Components/Community/CoProvider";
 import useAuthCheck from "../Hooks/useAuthCheck";
 import NotLoggedIn from "../Components/Discussion/NotLoggedIn";
+import Community from "../Components/Community/Community";
 
-const CommutityPage = () => 
-{
+const CommutityPage = () => {
   const { user, isLoading } = useAuthCheck();
   return (
     <CommunityProvider>
@@ -22,7 +21,7 @@ const CommutityPage = () =>
             <NotLoggedIn />
           </div>
         ) : (
-          <CoMyProfile />
+          <Community />
         )}
         <DiscussionGoHome />
       </div>

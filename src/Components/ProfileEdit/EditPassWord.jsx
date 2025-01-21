@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { EditContext } from "./EditContextComponent";
+import isPassValid from "../../Utils/validatePassword";
 
 const EditPassWord = () => {
   const { newData, handleChange } = useContext(EditContext);
@@ -14,8 +15,11 @@ const EditPassWord = () => {
     setIsValidPassword(null);
   };
 
-  const validatePassword = () => {
-    if (pass === newData.password) {
+  const validatePassword = async() => 
+  {   
+    const isValid =  await isPassValid(newData.password, pass)  
+    if (isValid) 
+    {
       setIsValidPassword(true);
     } else {
       setIsValidPassword(false);

@@ -3,6 +3,7 @@ export const mainAPI = import.meta.env.VITE_APP_API;
 // For User
 export const register = `${mainAPI}/user/register`;
 export const profile = `${mainAPI}/user/profile`;
+export const validate_password = `${mainAPI}/validate-password`
 
 // For GrowSphere
 export const company = `${mainAPI}/company/`;

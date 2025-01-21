@@ -11,8 +11,7 @@ const EditContextComponent = ({ children }) => {
   const [newData, setNewData] = useState(null);
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null)
- 
-  console.log("Invester Data:", newData)
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
