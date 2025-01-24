@@ -5,6 +5,7 @@ import { FaUser, FaEdit, FaSignOutAlt, FaMoneyCheckAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut } from "../../Utils/AuthMethods";
+import SearchComponent from "./Search/SearchComponent";
 
 const CoMyProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,62 +51,64 @@ const CoMyProfile = () => {
   ];
 
   return (
-    <div
-      className="absolute top-10 right-10 z-50"
-      
-    >
-      {/* Profile Icon */}
-      {myData && (
-        <div
-          className="w-[50px] h-[50px] cursor-pointer menu-container"
-          onClick={() => setMenuOpen(!menuOpen)} title={myData?.email || "Profile"}
-        >
-          {myData?.image ? (
-            <img
-              src={myData?.image || "/default-profile.png"}
-              alt="Profile"
-              className="border border-[#FFD700] rounded-full h-full object-cover hover:shadow-lg"
-            />
-          ) : (
-            <FcBusinessman className="text-5xl bg-[#1F1F1F] p-1 rounded-full shadow-md hover:bg-[#FFD700] hover:text-white transition-all" />
-          )}
-        </div>
-      )}
-
-      {/* Menu Options */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="absolute top-[60px] right-0 bg-[#1F1F1F] border border-[#FFD700] rounded-lg shadow-xl w-[250px] p-4 menu-container"
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={menuVariants}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+    <div className="fixed top-10 right-10 z-50 flex gap-4 items-center h-[50px]">
+      <SearchComponent />
+      <div>
+        {/* Profile Icon */}
+        {myData && (
+          <div
+            className="w-[50px] h-[50px] cursor-pointer menu-container"
+            onClick={() => setMenuOpen(!menuOpen)}
+            title={myData?.email || "Profile"}
           >
-            <ul className="space-y-3">
-              {menuItems.map((item) => (
-                <Link to={item.path} key={item.label}>
-                  <li
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all"
-                  >
-                    {item.icon} {item.label}
-                  </li>
-                </Link>
-              ))}
-              <li
-                onClick={!isLoggingOut ? logOutHandler : null}
-                className={`flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all ${
-                  isLoggingOut ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                <FaSignOutAlt /> {isLoggingOut ? "Logging Out..." : "Logout"}
-              </li>
-            </ul>
-          </motion.div>
+            {myData?.image || myData?.imageUrl ? (
+              <img
+                src={myData?.image || myData?.imageUrl || "👤"}
+                alt="Profile"
+                className="border border-[#FFD700] rounded-full h-full object-cover hover:shadow-lg"
+                loading="lazy"
+              />
+            ) : (
+              <FcBusinessman className="text-5xl bg-[#1F1F1F] p-1 rounded-full shadow-md hover:bg-[#FFD700] hover:text-white transition-all" />
+            )}
+          </div>
         )}
-      </AnimatePresence>
+
+        {/* Menu Options */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              className="absolute top-[60px] right-0 bg-[#1F1F1F] border border-[#FFD700] rounded-lg shadow-xl w-[250px] p-4 menu-container"
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={menuVariants}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              <ul className="space-y-3">
+                {menuItems.map((item) => (
+                  <Link to={item.path} key={item.label}>
+                    <li
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all"
+                    >
+                      {item.icon} {item.label}
+                    </li>
+                  </Link>
+                ))}
+                <li
+                  onClick={!isLoggingOut ? logOutHandler : null}
+                  className={`flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all ${
+                    isLoggingOut ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  <FaSignOutAlt /> {isLoggingOut ? "Logging Out..." : "Logout"}
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

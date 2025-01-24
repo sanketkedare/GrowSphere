@@ -1,16 +1,17 @@
 import React from "react";
 import DiscussionHeader from "../Components/Discussion/DiscussionHeader";
 import DiscussionGoHome from "../Components/Discussion/DiscussionGoHome";
-import CommunityProvider from "../Components/Community/CoProvider";
 import useAuthCheck from "../Hooks/useAuthCheck";
 import NotLoggedIn from "../Components/Discussion/NotLoggedIn";
 import Community from "../Components/Community/Community";
+import CommunityProvider from "../Components/Community/CoProvider";
 
 const CommutityPage = () => {
   const { user, isLoading } = useAuthCheck();
+
   return (
     <CommunityProvider>
-      <div className="text-white h-screen">
+      <div className="text-white">
         <DiscussionHeader />
         {isLoading ? (
           <div className="flex w-full h-[60vh] items-center justify-center">

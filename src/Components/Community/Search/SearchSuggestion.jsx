@@ -1,27 +1,35 @@
-import React from 'react'
+import React from "react";
 import { motion } from "framer-motion";
-import { suggestionBoxAnimation } from './animations'
+import { suggestionBoxAnimation } from "./animations";
+import SuggestionCart from "./SuggestionCart";
 
-const SearchSuggestion = ({suggestions}) => {
+const SearchSuggestion = ({ suggestions }) => {
+
   return (
     <motion.div
-    className="w-[800px] mt-4 bg-white shadow-lg rounded-lg p-4"
-    {...suggestionBoxAnimation}
-  >
-    {suggestions && suggestions.length > 0 ? (
-      suggestions.map((item, index) => (
-        <div
-          key={index}
-          className="p-2 text-gray-700 hover:bg-gray-100 rounded-md cursor-pointer"
-        >
-          {item?.name}
-        </div>
-      ))
-    ) : (
-      <p className="text-gray-500">No suggestions found.</p>
-    )}
-  </motion.div>
-  )
-}
+      className="absolute mt-4 bg-white shadow-lg rounded-lg p-4"
+      {...suggestionBoxAnimation}
+    >
+      {suggestions?.investers?.length > 0 && (
+        <SuggestionCart
+          type={"Investers"}
+          list={suggestions?.investers || []}
+        />
+      )}
+       {suggestions?.company?.length > 0 && (
+        <SuggestionCart
+          type={"Comapies"}
+          list={suggestions?.company || []}
+        />
+      )}
+       {suggestions?.employee?.length > 0 && (
+        <SuggestionCart
+          type={"Employees"}
+          list={suggestions?.employee || []}
+        />
+      )}
+    </motion.div>
+  );
+};
 
-export default SearchSuggestion
+export default SearchSuggestion;

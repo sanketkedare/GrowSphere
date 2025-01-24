@@ -2,9 +2,10 @@ import React from 'react'
 import { motion} from "framer-motion";
 import { TbCube3dSphere } from "react-icons/tb";
 
-const DiscussionHeader = () => {
+const DiscussionHeader = () => 
+  {
     return (
-      <div className="sticky z-10 m-auto p-5 flex gap-2 items-center">
+      <div className="sticky z-10 top-0 m-auto p-5 flex gap-2 items-center">
       <motion.div
         className="text-[50px] shadow-md rounded-full p-1 text-[#e2bf65]"
         animate={{ rotate: 360 }}

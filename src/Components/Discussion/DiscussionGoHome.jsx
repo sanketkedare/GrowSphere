@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const DiscussionGoHome = () => {
   return (
     <Link to={'/'}>
-      <div className="absolute bottom-2 z-10 left-2 flex gap-1 items-center justify-evenly bg-black rounded-full p-2">
+      <div className="fixed bottom-2 z-10 left-2 flex gap-1 items-center justify-evenly bg-black rounded-full p-2">
         {/* Button */}
         <motion.div
           className="p-4 rounded-full border bg-black text-[#e2bf65] cursor-pointer text-sm shadow-lg"

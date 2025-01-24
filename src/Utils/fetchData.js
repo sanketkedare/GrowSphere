@@ -1,10 +1,14 @@
-const fetchData = async (API) => {
+
+const fetchData = async (API) => 
+{
+
   try {
     const response = await fetch(API);
     const JSON = await response.json();
-
-    return {succes: true,data:JSON};
-  } catch (error) {
+    const obj =  {succes: true,data:JSON}
+    return obj;
+  } catch (error) 
+  {
     return { succes : false, error : error};
   }
 };

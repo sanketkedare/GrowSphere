@@ -36,7 +36,7 @@ const MenuButtons = ({ handleMenuItemClick, menuOpen, menuRef }) => {
       {menuOpen && (
         <motion.div
           ref={menuRef}
-          className="relative bg-[#11162d] text-white w-[250px] rounded-xl p-4 shadow-xl backdrop-blur-sm border border-white"
+          className="relative bg-[#11162d] text-white w-[250px] max-h-screen  rounded-xl p-4 shadow-xl backdrop-blur-sm border border-white"
           variants={menuVariants}
           initial="hidden"
           animate="visible"
@@ -44,7 +44,7 @@ const MenuButtons = ({ handleMenuItemClick, menuOpen, menuRef }) => {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {/* Menu Items */}
-          <Link to={"/community"} target="_blank">
+          <Link to={"/community"} >
             <button className="flex items-center gap-2 bg-white text-black font-bold w-full text-center p-4 rounded-xl my-2 hover:bg-[#e2bf65] hover:text-[#11162d] transition-all duration-300">
               <RiUserCommunityFill />
               Go To Commutity

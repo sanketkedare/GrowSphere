@@ -6,14 +6,14 @@ import { TbBrandLinkedinFilled } from "react-icons/tb";
 const MenuSocial = () => 
 {
   return (
-    <div className="h-[100px] flex justify-center items-center gap-4 mt-4">
+    <div className="flex h-[50px] justify-center items-center gap-4 mt-4">
       <a
         href={LINKEDIN_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full p-3 hover:bg-[#11162d] hover:text-[#e2bf65] transition-all duration-300"
       >
-        <TbBrandLinkedinFilled className="text-4xl" />
+        <TbBrandLinkedinFilled className="text-2xl" />
       </a>
       <a
         href={GITHUB_URL}
@@ -21,7 +21,7 @@ const MenuSocial = () =>
         rel="noopener noreferrer"
         className="rounded-full p-3 hover:bg-[#11162d] hover:text-[#e2bf65] transition-all duration-300"
       >
-        <BsGithub className="text-4xl" />
+        <BsGithub className="text-2xl" />
       </a>
     </div>
   );

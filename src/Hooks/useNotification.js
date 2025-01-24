@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAllNotification } from "../Redux/notificationSlice";
 import { setChangeStage } from "../Redux/stageChange";
 
-const useNotification = () => {
+const useNotification = () => 
+{
   const { stage } = useSelector((state) => state);
   const data = useUserData();
   const dispatch = useDispatch();
@@ -22,11 +23,14 @@ const useNotification = () => {
         : userType === COMPANY
         ? `${investments}company/${id}`
         : "";
+    
     const response = await fetchData(API);
-    if (response?.data?.length > 0) {
-      setNotifications(response?.data);
-      dispatch(setAllNotification(response.data));
-    }
+
+    if(response.succes && response?.data?.length > 0)
+    {
+        setNotifications(response?.data);
+        dispatch(setAllNotification(response.data));
+    }   
   };
 
   useEffect(() => {
