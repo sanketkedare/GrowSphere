@@ -1,16 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { CommunityContext } from "./CoProvider";
 import { FcBusinessman } from "react-icons/fc";
 import { FaUser, FaEdit, FaSignOutAlt, FaMoneyCheckAlt } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut } from "../../Utils/AuthMethods";
-import SearchComponent from "./Search/SearchComponent";
+import { GiPostOffice } from "react-icons/gi";
 
 const CoMyProfile = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const { myData } = useContext(CommunityContext);
+  const { myData,mode, setMode } = useContext(CommunityContext);
   const navigate = useNavigate();
 
   const logOutHandler = async () => {
@@ -25,25 +23,6 @@ const CoMyProfile = () => {
     }
   };
 
-  // Close the menu if clicked outside
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (!e.target.closest(".menu-container")) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
-
-  // Framer Motion Variants
-  const menuVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   const menuItems = [
     { label: "View Profile", icon: <FaUser />, path: "/myprofile" },
     { label: "Edit Profile", icon: <FaEdit />, path: "/edit-profile" },
@@ -51,64 +30,55 @@ const CoMyProfile = () => {
   ];
 
   return (
-    <div className="fixed top-10 right-10 z-50 flex gap-4 items-center h-[50px]">
-      <SearchComponent />
-      <div>
-        {/* Profile Icon */}
-        {myData && (
-          <div
-            className="w-[50px] h-[50px] cursor-pointer menu-container"
-            onClick={() => setMenuOpen(!menuOpen)}
-            title={myData?.email || "Profile"}
-          >
-            {myData?.image || myData?.imageUrl ? (
-              <img
-                src={myData?.image || myData?.imageUrl || "👤"}
-                alt="Profile"
-                className="border border-[#FFD700] rounded-full h-full object-cover hover:shadow-lg"
-                loading="lazy"
-              />
-            ) : (
-              <FcBusinessman className="text-5xl bg-[#1F1F1F] p-1 rounded-full shadow-md hover:bg-[#FFD700] hover:text-white transition-all" />
-            )}
-          </div>
+    <div className="w-9/10 z-50 rounded-xl text-[#FFD700] m-2 p-4  shadow-lg">
+      {/* Profile Section */}
+      <div className="flex flex-col items-center justify-center gap-4 mb-6">
+        {myData?.image || myData?.imageUrl ? (
+          <img
+            src={myData?.image || myData?.imageUrl}
+            alt="Profile"
+            className="w-[150px] h-[150px]  rounded-full border border-[#FFD700] object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <FcBusinessman className="text-4xl" />
         )}
-
-        {/* Menu Options */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              className="absolute top-[60px] right-0 bg-[#1F1F1F] border border-[#FFD700] rounded-lg shadow-xl w-[250px] p-4 menu-container"
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={menuVariants}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-            >
-              <ul className="space-y-3">
-                {menuItems.map((item) => (
-                  <Link to={item.path} key={item.label}>
-                    <li
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all"
-                    >
-                      {item.icon} {item.label}
-                    </li>
-                  </Link>
-                ))}
-                <li
-                  onClick={!isLoggingOut ? logOutHandler : null}
-                  className={`flex items-center gap-3 cursor-pointer bg-[#292929] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1F1F1F] p-3 rounded-lg transition-all ${
-                    isLoggingOut ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                >
-                  <FaSignOutAlt /> {isLoggingOut ? "Logging Out..." : "Logout"}
-                </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div>
+          <p className="font-bold text-center">{myData?.name || "Guest User"}</p>
+          <p className="text-sm text-center">{myData?.email || "No email provided"}</p>
+        </div>
       </div>
+
+      {/* Menu Items */}
+      <ul className="space-y-4 ">
+        {menuItems.map((item) => (
+          <Link to={item.path} key={item.label}>
+            <li className="flex items-center gap-3 my-1 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer">
+              {item.icon}
+              {item.label}
+            </li>
+          </Link>
+        ))}
+          <li
+          onClick={()=> mode === "All" ? setMode('My') : setMode('All')}
+          className={`flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer
+          }`}
+        >
+          <GiPostOffice/>
+         {mode === "All" ?  "My " : "All " }Posts
+        </li>
+        <li
+          onClick={!isLoggingOut ? logOutHandler : null}
+          className={`flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer ${
+            isLoggingOut ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          <FaSignOutAlt />
+          {isLoggingOut ? "Logging Out..." : "Logout"}
+        </li>
+
+      
+      </ul>
     </div>
   );
 };

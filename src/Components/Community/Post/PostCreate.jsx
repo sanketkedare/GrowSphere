@@ -45,7 +45,7 @@ const PostCreate = () => {
   }, [message]);
 
   return (
-    <div className="sticky z-30 top-5 m-auto mt-6 w-[650px] bg-gray-700 rounded-3xl">
+    <div className="sticky z-30 top-5 ml-4 mt-6 w-[650px] bg-gray-700 rounded-3xl">
       {message && (
         <div
           className={`fixed top-0 w-[650px] p-4 ${

@@ -29,7 +29,7 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="w-full max-h-[90vh] flex flex-col items-center py-8 relative">
+    <div className="w-[350px] max-h-[90vh] flex flex-col items-center fixed top-5 right-0 z-50">
       <motion.section
         onMouseEnter={() => setSuggestionOpen(true)}
         onMouseLeave={() => setSuggestionOpen(false)}
