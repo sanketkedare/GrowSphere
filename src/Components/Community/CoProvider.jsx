@@ -7,6 +7,7 @@ import useUserData from "../../Hooks/useUserData";
 import { createNewPost } from "../../Utils/postsMethod";
 import fetchData from "../../Utils/fetchData";
 import { posts, search } from "../../API/apis";
+import axios from "axios";
 
 export const CommunityContext = createContext(null);
 
@@ -35,6 +36,7 @@ const CommunityProvider = ({ children }) => {
     try {
       const body = { ...data, ownerId: myData._id };
       const res = await createNewPost(body);
+      await getPosts()
       if (res) setMessage(res);
     } catch (error) {
       setMessage({ success: false, message: "Error creating post" });
@@ -55,6 +57,22 @@ const CommunityProvider = ({ children }) => {
       return { success: false, message: "Error fetching owner data" };
     }
   };
+
+
+  const deletePost = async(postId) =>
+  {
+    try
+    {
+      const API = `${posts}${postId}`;
+      const response = await axios.delete(API);
+      await getPosts()
+      response && alert("Post deleted successfully")
+    }
+    catch(error){
+      alert("Error deleting post");
+    }
+
+  }
 
   useEffect(() => {
     if (communityPosts) {
@@ -80,12 +98,14 @@ const CommunityProvider = ({ children }) => {
 
   const value = {
     myData,
+    getPosts,
     createPost,
     message,
     myPosts,
     mode,
     setMode,
     getOwnerData,
+    deletePost
   };
 
   return (

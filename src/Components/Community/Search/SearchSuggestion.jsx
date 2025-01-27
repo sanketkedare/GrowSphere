@@ -7,7 +7,7 @@ const SearchSuggestion = ({ suggestions }) => {
 
   return (
     <motion.div
-      className="absolute mt-4 bg-white shadow-lg rounded-lg p-4"
+      className="absolute mt-1 bg-white shadow-lg rounded-lg p-4"
       {...suggestionBoxAnimation}
     >
       {suggestions?.investers?.length > 0 && (

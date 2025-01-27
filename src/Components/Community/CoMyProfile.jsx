@@ -8,7 +8,7 @@ import { GiPostOffice } from "react-icons/gi";
 
 const CoMyProfile = () => {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const { myData,mode, setMode } = useContext(CommunityContext);
+  const { myData, mode, setMode } = useContext(CommunityContext);
   const navigate = useNavigate();
 
   const logOutHandler = async () => {
@@ -29,15 +29,19 @@ const CoMyProfile = () => {
     { label: "My Investments", icon: <FaMoneyCheckAlt />, path: "/discuss" },
   ];
 
+  if (!myData) {
+    return null;
+  }
+
   return (
-    <div className="w-9/10 z-50 rounded-xl text-[#FFD700] m-2 p-4  shadow-lg">
+    <div className="w-9/10 z-50 rounded-xl text-[#FFD700] m-2 p-4 shadow-lg">
       {/* Profile Section */}
       <div className="flex flex-col items-center justify-center gap-4 mb-6">
         {myData?.image || myData?.imageUrl ? (
           <img
             src={myData?.image || myData?.imageUrl}
             alt="Profile"
-            className="w-[150px] h-[150px]  rounded-full border border-[#FFD700] object-cover"
+            className="w-[150px] h-[150px] rounded-full border border-[#FFD700] object-cover"
             loading="lazy"
           />
         ) : (
@@ -50,7 +54,7 @@ const CoMyProfile = () => {
       </div>
 
       {/* Menu Items */}
-      <ul className="space-y-4 ">
+      <ul className="space-y-4">
         {menuItems.map((item) => (
           <Link to={item.path} key={item.label}>
             <li className="flex items-center gap-3 my-1 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer">
@@ -59,25 +63,24 @@ const CoMyProfile = () => {
             </li>
           </Link>
         ))}
-          <li
-          onClick={()=> mode === "All" ? setMode('My') : setMode('All')}
-          className={`flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer
-          }`}
+
+        {/* Toggle between "My" and "All" posts */}
+        <li
+          onClick={() => setMode(mode === "All" ? "My" : "All")}
+          className="flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer"
         >
-          <GiPostOffice/>
-         {mode === "All" ?  "My " : "All " }Posts
+          <GiPostOffice />
+          {mode === "All" ? "My " : "All "}Posts
         </li>
+
+        {/* Logout Button */}
         <li
           onClick={!isLoggingOut ? logOutHandler : null}
-          className={`flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer ${
-            isLoggingOut ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`flex items-center gap-3 p-3 bg-[#292929] hover:bg-[#FFD700] hover:text-[#1F1F1F] rounded-lg transition-all cursor-pointer ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
         >
           <FaSignOutAlt />
           {isLoggingOut ? "Logging Out..." : "Logout"}
         </li>
-
-      
       </ul>
     </div>
   );
