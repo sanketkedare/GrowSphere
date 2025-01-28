@@ -84,6 +84,8 @@ const CommunityProvider = ({ children }) => {
     }
   }, [mode, communityPosts, myData]);
 
+  
+
   useEffect(() => {
     let timeout;
     if (message) {
