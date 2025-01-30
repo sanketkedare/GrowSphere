@@ -1,82 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { IoMdPersonAdd, IoMdClose, IoMdCheckmark } from "react-icons/io";
-import { CommunityContext } from "../CoProvider";
-import { updateConnections } from "./connectionHandeler";
+import { useConnection } from "../../../Hooks/useConnection";
+import ConnectionActions from "./ConnectionActions";
 
 const UserCart = ({ item, index, setHoverIndex, hoverIndex }) => {
-  const { myData } = useContext(CommunityContext);
-  const [myConnectionObj, setMyConnectionObj] = useState(
-    myData?.connections || { requests: [], accepted: [], pendings: [], blocked: [] }
-  );
-  const [clientConnection, setClientConnection] = useState(
-    item?._connections || { requests: [], accepted: [], pendings: [], blocked: [] }
-  );
-
-  // Determine connection status
-  const isConnected = myConnectionObj?.accepted?.includes(item?._id);
-  const isPending = myConnectionObj?.pendings?.includes(item?._id);
-  const isRequested = myConnectionObj?.requests?.includes(item?._id);
-  const isBlocked = myConnectionObj?.blocked?.includes(item?._id);
+  const {
+    isConnected,
+    isPending,
+    isRequested,
+    isBlocked,
+    sendConnectionRequest,
+    deleteConnectionRequest,
+    acceptConnectionRequest,
+  } = useConnection(item);
 
   // Blocked users are hidden
   if (isBlocked) {
     return null;
   }
-
-  // Handlers for connection actions
-  const sendConnectionRequest = (clientId) => {
-    setMyConnectionObj((prev) => ({
-      ...prev,
-      requests: [...prev.requests, clientId],
-    }));
-    setClientConnection((prev) => ({
-      ...prev,
-      pendings: [...prev.pendings, myData?._id],
-    }));
-  };
-
-  const deleteConnectionRequest = (clientId) => {
-    setMyConnectionObj((prev) => ({
-      ...prev,
-      requests: prev.requests.filter((id) => id !== clientId),
-    }));
-    setClientConnection((prev) => ({
-      ...prev,
-      pendings: prev.pendings.filter((id) => id !== myData?._id),
-    }));
-  };
-
-  const acceptConnectionRequest = (clientId) => {
-    setMyConnectionObj((prev) => ({
-      ...prev,
-      requests: prev.requests.filter((id) => id !== clientId),
-      accepted: [...prev.accepted, clientId],
-    }));
-    setClientConnection((prev) => ({
-      ...prev,
-      pendings: prev.pendings.filter((id) => id !== myData?._id),
-      accepted: [...prev.accepted, myData?._id],
-    }));
-  };
-
-  const update = async () => {
-    try {
-      await Promise.all([
-        updateConnections(myData?.userType, myData?._id, myConnectionObj),
-        updateConnections(item?.userType, item?._id, clientConnection),
-      ]);
-      console.log("Connections updated successfully.");
-    } catch (error) {
-      console.error("Error updating connections:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    if (myData?._id) {
-      update();
-    }
-  }, [myData?._id, myConnectionObj, clientConnection]);
 
   return (
     <div
@@ -85,42 +26,16 @@ const UserCart = ({ item, index, setHoverIndex, hoverIndex }) => {
       onMouseLeave={() => setHoverIndex(null)}
     >
       {/* Hover Actions */}
-      {hoverIndex === index && myData?._id !== item?._id && (
-        <div className="absolute top-2 right-2 flex flex-col gap-2 z-10">
-          {isConnected && (
-            <button className="bg-green-500 text-black p-2 rounded-md flex items-center gap-2" disabled>
-              <IoMdCheckmark />
-              <span>Connected</span>
-            </button>
-          )}
-          {isPending && (
-            <button
-              className="bg-yellow-500 text-black p-2 rounded-md flex items-center gap-2"
-              onClick={() => acceptConnectionRequest(item?._id)}
-            >
-              <IoMdCheckmark />
-              <span>Accept</span>
-            </button>
-          )}
-          {isRequested && (
-            <button
-              className="bg-red-500 text-black p-2 rounded-md flex items-center gap-2"
-              onClick={() => deleteConnectionRequest(item?._id)}
-            >
-              <IoMdClose />
-              <span>Cancel Request</span>
-            </button>
-          )}
-          {!isConnected && !isPending && !isRequested && (
-            <button
-              className="bg-sky-500 text-black p-2 rounded-md flex items-center gap-2"
-              onClick={() => sendConnectionRequest(item?._id)}
-            >
-              <IoMdPersonAdd />
-              <span>Connect</span>
-            </button>
-          )}
-        </div>
+      {hoverIndex === index && (
+        <ConnectionActions
+          isConnected={isConnected}
+          isPending={isPending}
+          isRequested={isRequested}
+          sendConnectionRequest={sendConnectionRequest}
+          deleteConnectionRequest={deleteConnectionRequest}
+          acceptConnectionRequest={acceptConnectionRequest}
+          item={item}
+        />
       )}
 
       {/* Link to Profile */}

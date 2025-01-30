@@ -8,7 +8,7 @@ export const updateConnections = async(userType, userid, obj ) =>
         const API = community + userid
         const body = {userType : userType, body: obj}
         const res = await axios.put(API, body )
-        console.log( res.data);
+        return res.data
         
     } 
     catch (error) 
