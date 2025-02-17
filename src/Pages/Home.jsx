@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import Welcome from "../Components/Home/Welcome";
 import Menu from "../Components/Home/Menu";
 import Goal from "../Components/Home/Goal";
 import About from "../Components/Home/About";
 import Contact from "../Components/Home/Contact";
-import Partners from "../Components/Home/Partners";
 import InvestmentProcess from "../Components/Home/Process";
 import Footer from "../Components/Home/Footer";
 import Notifications from "../Components/Home/Notifications";
@@ -14,6 +13,9 @@ import useAuthCheck from "../Hooks/useAuthCheck";
 import { useDispatch } from "react-redux";
 import { deleteAllNotifications } from "../Redux/notificationSlice";
 import { deleteUser } from "../Redux/userSlice";
+
+// Lazy load the Partners component
+const Partners = lazy(() => import("../Components/Home/Partners"));
 
 const Home = () => {
   const { user } = useAuthCheck();
@@ -27,7 +29,7 @@ const Home = () => {
       dispatch(deleteAllNotifications());
       dispatch(deleteUser());
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   return (
     <div className="bg-[#0a0f24] text-[#f5f3f0] relative">
@@ -36,7 +38,9 @@ const Home = () => {
       <Welcome />
       <Goal />
       <InvestmentProcess />
-      <Partners />
+      <Suspense fallback={<div>Loading Partners...</div>}>
+        <Partners />
+      </Suspense>
       <About />
       <Contact />
       <Footer />
